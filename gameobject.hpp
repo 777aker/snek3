@@ -3,6 +3,11 @@
 
 #include "window/window.hpp"
 
+struct point {
+    float x;
+    float y;
+};
+
 class GameObject {
 public:
     GameObject(){};
