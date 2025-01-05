@@ -65,7 +65,7 @@ void display_loop(Window *windowobj) {
 }
 
 void make_food(Window *windowobj) {
-	Food *f = new Food(main_player, make_food, windowobj);
+	Food *f = new Food(main_player, make_food, windowobj, &all_objects);
 	all_objects.push_back(f);
 }
 

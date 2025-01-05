@@ -10,7 +10,7 @@ Player::Player() {
     speed = 0.25;
     turn_speed = .05;
     dir_modifier = 0;
-    my_color = sunflower;
+    my_color = emerald;
 
     point start = { 0, 0 };
     body[0] = start;

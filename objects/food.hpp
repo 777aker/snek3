@@ -8,7 +8,7 @@
 
 class Food : public GameObject {
 public:
-    Food(Player *mp, void (*sf)(Window*), Window* windowobj);
+    Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameObject*> *ao);
     ~Food();
     void display_loop(Window *windowobj);
 private:
@@ -16,6 +16,7 @@ private:
     void (*spawn_food)(Window*);
     circle me;
     Window* main_window;
+    std::vector<GameObject*> *all_objects;
 };
 
 #endif
