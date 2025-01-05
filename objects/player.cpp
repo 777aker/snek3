@@ -5,7 +5,7 @@
 
 Player::Player() {
     // initialize all the player variables
-    r = 4;
+    r = 1;
     direction = 0;
     speed = 0.25;
     turn_speed = .05;
@@ -90,7 +90,7 @@ void Player::display_loop(Window *windowobj) {
 
     // draw the player
     glColor3ub(my_color.r, my_color.g, my_color.b);
-    glPointSize(r);
+    glPointSize(r * POINT_SIZE_MODIFIER);
     glEnableClientState(GL_VERTEX_ARRAY);
     glVertexPointer(2, GL_FLOAT, sizeof(point), &body[0]);
     if(head + cur_length > MAX_BODY_LEN) {

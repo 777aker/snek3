@@ -17,6 +17,8 @@
 
 #include <cmath>
 
+#define POINT_SIZE_MODIFIER 10
+
 struct point {
     float x;
     float y;
