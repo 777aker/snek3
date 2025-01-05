@@ -3,7 +3,9 @@
 
 #include <deque>
 
-#include "gameobject.hpp"
+#include "../common.hpp"
+#include "../window/window.hpp"
+#include "objects.hpp"
 
 #define MAX_BODY_LEN 15008004
 
@@ -13,6 +15,8 @@ public:
     ~Player();
     void key_press(GLFWwindow *windowobj, int key, int scancode, int action, int mods);
     void display_loop(Window *windowobj);
+    circle get_head();
+    void increase_length(int increase);
 private:
     float r;
     float direction;

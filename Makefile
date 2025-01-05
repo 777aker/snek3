@@ -26,16 +26,19 @@ endif
 window/window.a:
 	cd window && $(MAKE)
 
-main.o: main.cpp window/window.hpp player.hpp
-player.o: player.cpp player.hpp gameobject.hpp
+objects/objects.a:
+	cd objects && $(MAKE)
+
+main.o: main.cpp common.hpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
-snek3:main.o player.o window/window.a
+snek3:main.o window/window.a objects/objects.a
 	g++ $(CFLG) -o $@ $^ $(LIBS)
 
 # Clean
 clean:
 	cd window && $(CLEAN)
+	cd objects && $(CLEAN)
 	$(CLEAN)

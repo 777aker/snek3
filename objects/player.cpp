@@ -24,10 +24,20 @@ Player::~Player() {
 
 }
 
-void Player::key_press(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
-    if(key == GLFW_KEY_SPACE)
-        max_length += 10;
+circle Player::get_head() {
+    point position = body[head];
+    circle head = {
+        position,
+        r,
+    };
+    return head;
+}
 
+void Player::increase_length(int increase) {
+    max_length += increase;
+}
+
+void Player::key_press(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
     if(max_length > MAX_BODY_LEN) {
         std::cout << "ur mom" << std::endl;
         max_length = MAX_BODY_LEN;

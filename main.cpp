@@ -1,6 +1,11 @@
-#include "window/window.hpp"
-#include "player.hpp"
+#include <vector>
 
+#include "common.hpp"
+#include "window/window.hpp"
+#include "objects/player.hpp"
+#include "objects/food.hpp"
+
+std::vector<GameObject*> all_objects;
 Player *main_player;
 
 /**
@@ -36,7 +41,9 @@ void display_loop(Window *windowobj) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// call player display loop
-		main_player->display_loop(windowobj);
+		for(long unsigned int i = 0; i < all_objects.size(); i++) {
+			all_objects[i]->display_loop(windowobj);
+		}
 
 		// want to see fps
 		glColor3ub(nephritis.r, nephritis.g, nephritis.b);
@@ -57,6 +64,11 @@ void display_loop(Window *windowobj) {
 	}
 }
 
+void make_food(Window *windowobj) {
+	Food *f = new Food(main_player, make_food, windowobj);
+	all_objects.push_back(f);
+}
+
 /**
  * @brief program entry point
  * 
@@ -71,6 +83,8 @@ int main(int argc, char *argv[]) {
 
 	// make a player object
 	main_player = new Player();
+	all_objects.push_back(main_player);
+	make_food(&mainwindow);
 
 	// start main display loop
 	display_loop(&mainwindow);

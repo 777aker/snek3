@@ -1,4 +1,4 @@
-EXE=window.a
+EXE=objects.a
 
 all: $(EXE)
 
@@ -21,9 +21,10 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-window.o: window.cpp window.hpp 
+player.o: player.cpp player.hpp objects.hpp
+food.o: food.cpp food.hpp objects.hpp
 
-window.a: window.o
+objects.a: player.o food.o
 	ar -rcs $@ $^
 
 .cpp.o:
