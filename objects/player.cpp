@@ -1,5 +1,4 @@
 #include <cmath>
-#include <iostream>
 
 #include "player.hpp"
 
@@ -66,7 +65,6 @@ void Player::increase_length(int increase) {
  */
 void Player::key_press(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
     if(max_length > MAX_BODY_LEN) {
-        std::cout << "ur mom" << std::endl;
         max_length = MAX_BODY_LEN;
     }
     

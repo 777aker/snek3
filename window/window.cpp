@@ -2,11 +2,12 @@
 * Window class
 * Handles making a window
 */
+#include <vector>
+#include <iostream>
+
 #include "window.hpp"
 
-double dim = 100; // size of the world
-double asp = 1; // aspect ratio
-bool wasResized = false; // called resize function
+std::vector<Window*> windows;
 
 // Fatal error occured
 static void Fatal(const char* format, ...) {
@@ -24,15 +25,24 @@ static void error(int error, const char* text) {
 
 // resize the window
 void reshape(GLFWwindow* windowobj, int width, int height) {
-	glfwGetFramebufferSize(windowobj, &width, &height);
-	asp = (height > 0) ? (double)width / height : 1;
+	Window *me;
+	for(unsigned long int i = 0; i < windows.size(); i++) {
+		if(windows[i]->glwindow == windowobj) {
+			me = windows[i];
+		}
+	}
+	if(me == NULL) {
+		std::cout << "reshape: Couldn't find window pointer" << std::endl;
+		return;
+	}
+	// glfwGetFramebufferSize(windowobj, &width, &height);
+	me->asp = (height > 0) ? (double)width / (double)height : 1;
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-asp * dim, asp * dim, -dim, +dim, -dim, +dim);
+	glOrtho(-me->asp * me->dim, me->asp * me->dim, -me->dim, +me->dim, -me->dim, +me->dim);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	wasResized = true;
 }
 
 // initialize a lot of window stuff
@@ -40,6 +50,8 @@ Window::Window(const char* title, int sync, int width, int height,
 	void(*key)(GLFWwindow*, int, int, int, int)) {
 	// initialize GLFW
 	if (!glfwInit()) Fatal("Cannot initialize glfw\n");
+
+	windows.push_back(this);
 
 	// Error callback
 	glfwSetErrorCallback(error);
@@ -58,13 +70,15 @@ Window::Window(const char* title, int sync, int width, int height,
 	// enable vsync 
 	glfwSwapInterval(sync);
 
-	glfwSetWindowSizeCallback(glwindow, &reshape);
+	glfwSetWindowSizeCallback(glwindow, reshape);
 	// set window size and call reshape
-	glfwGetWindowSize(glwindow, &width, &height);
+	// glfwGetWindowSize(glwindow, &width, &height);
 	reshape(glwindow, width, height);
 
 	// set callback for keyboard input
 	glfwSetKeyCallback(glwindow, key);
+
+	
 }
 
 // clean up window

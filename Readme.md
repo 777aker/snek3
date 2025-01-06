@@ -12,7 +12,8 @@ Incremental?
 
 ### Basic Snake
 - [x] A snake that moves around and rotates
-    - [ ] die if hit any of your body
+    - [ ] die if hit any of your body (not first 5 of yourself cause that's insta death)
+    - [ ] die if go offscreen
 - [ ] ~~Pick color~~
 - [ ] ~~Pick start location~~
 - [ ] Food counter

@@ -41,6 +41,8 @@ class Window {
 public:
 	double dim = 100;
 	double asp = 1;
+	int pixel_width;
+	int pixel_height;
 	Window(const char* title, int sync, int width, int height,
 		void(*key)(GLFWwindow*, int, int, int, int));
 	int FramesPerSecond();

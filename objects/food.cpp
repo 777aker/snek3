@@ -12,15 +12,16 @@
  * @param windowobj 
  * @param ao 
  */
-Food::Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameObject*> *ao) {
+Food::Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameObject*> *ao, int *tf) {
     main_player = mp;
     spawn_food = sf;
     main_window = windowobj;
     all_objects = ao;
+    total_foods = tf;
 
     me = {
         { 
-            (float)((rand() % (int)(windowobj->dim*2)) - windowobj->dim), 
+            (float)((rand() % (int)(windowobj->dim*windowobj->asp*2)) - windowobj->dim*windowobj->asp), 
             (float)((rand() % (int)(windowobj->dim*2)) - windowobj->dim) 
         },
         1
@@ -34,6 +35,7 @@ Food::Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameO
 Food::~Food() {
     all_objects->erase(std::remove(all_objects->begin(), all_objects->end(), this), all_objects->end());
     spawn_food(main_window);
+    *total_foods = *total_foods + 1;
 }
 
 /**

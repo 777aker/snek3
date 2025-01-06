@@ -1,4 +1,7 @@
 #include <vector>
+#include <iostream>
+#include <thread>
+#include <atomic>
 
 #include "common.hpp"
 #include "window/window.hpp"
@@ -7,6 +10,11 @@
 
 std::vector<GameObject*> all_objects;
 Player *main_player;
+int total_foods = 0;
+
+std::vector<std::thread*> threads;
+size_t NUM_THREADS = 4;
+std::atomic_int barrier = 0;
 
 /**
  * @brief respond to key pressed
@@ -45,10 +53,14 @@ void display_loop(Window *windowobj) {
 			all_objects[i]->display_loop(windowobj);
 		}
 
+		// font color
+		glColor3ub(concrete.r, concrete.g, concrete.b);
 		// want to see fps
-		glColor3ub(nephritis.r, nephritis.g, nephritis.b);
-		glRasterPos2i(-windowobj->dim * windowobj->asp + 5, windowobj->dim - 5);
+		glRasterPos2i(windowobj->dim * windowobj->asp - 20, windowobj->dim - 5);
 		Print("FPS=%d", windowobj->FramesPerSecond());
+		// display total foods
+		glRasterPos2i(-windowobj->dim * windowobj->asp + 10, windowobj->dim - 5);
+		Print("Total Food=%d", total_foods);
 
 		// check for display errors
 		int err = glGetError();
@@ -70,7 +82,7 @@ void display_loop(Window *windowobj) {
  * @param windowobj 
  */
 void make_food(Window *windowobj) {
-	Food *f = new Food(main_player, make_food, windowobj, &all_objects);
+	Food *f = new Food(main_player, make_food, windowobj, &all_objects, &total_foods);
 	all_objects.push_back(f);
 }
 
