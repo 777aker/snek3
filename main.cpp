@@ -1,7 +1,5 @@
 #include <vector>
 #include <iostream>
-#include <thread>
-#include <atomic>
 
 #include "common.hpp"
 #include "window/window.hpp"
@@ -11,10 +9,6 @@
 std::vector<GameObject*> all_objects;
 Player *main_player;
 int total_foods = 0;
-
-std::vector<std::thread*> threads;
-size_t NUM_THREADS = 4;
-std::atomic_int barrier = 0;
 
 /**
  * @brief respond to key pressed
