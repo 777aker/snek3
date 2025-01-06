@@ -3,6 +3,10 @@
 
 #include "player.hpp"
 
+/**
+ * @brief Construct a new Player:: Player object
+ * 
+ */
 Player::Player() {
     // initialize all the player variables
     r = 1;
@@ -20,10 +24,19 @@ Player::Player() {
     cur_length = 1;
 }
 
+/**
+ * @brief Destroy the Player:: Player object
+ * 
+ */
 Player::~Player() {
 
 }
 
+/**
+ * @brief get the player's head for collision detection
+ * 
+ * @return circle 
+ */
 circle Player::get_head() {
     point position = body[head];
     circle head = {
@@ -33,10 +46,24 @@ circle Player::get_head() {
     return head;
 }
 
+/**
+ * @brief increase player maximum length
+ * 
+ * @param increase 
+ */
 void Player::increase_length(int increase) {
     max_length += increase;
 }
 
+/**
+ * @brief handle key press event
+ * 
+ * @param windowobj 
+ * @param key 
+ * @param scancode 
+ * @param action 
+ * @param mods 
+ */
 void Player::key_press(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
     if(max_length > MAX_BODY_LEN) {
         std::cout << "ur mom" << std::endl;
@@ -63,6 +90,11 @@ void Player::key_press(GLFWwindow *windowobj, int key, int scancode, int action,
     };
 }
 
+/**
+ * @brief called every frame
+ * 
+ * @param windowobj 
+ */
 void Player::display_loop(Window *windowobj) {
     // update direction
     direction += dir_modifier;
@@ -72,28 +104,24 @@ void Player::display_loop(Window *windowobj) {
         body[head].y + (float)sin(direction) * speed
     };
     head++;
-    if(head > MAX_BODY_LEN)
+    if(head > MAX_BODY_LEN - 1)
         head = 0;
     body[head] = new_head;
     cur_length++;
 
     while(cur_length > max_length) {
         tail++;
-        if(tail > MAX_BODY_LEN)
+        if(tail > MAX_BODY_LEN - 1)
             tail = 0;
         cur_length--;
     }
-
-    // while(body.size() > length) {
-    //     body.pop();
-    // }
 
     // draw the player
     glColor3ub(my_color.r, my_color.g, my_color.b);
     glPointSize(r * POINT_SIZE_MODIFIER);
     glEnableClientState(GL_VERTEX_ARRAY);
     glVertexPointer(2, GL_FLOAT, sizeof(point), &body[0]);
-    if(head + cur_length > MAX_BODY_LEN) {
+    if(tail + cur_length > MAX_BODY_LEN) {
         glDrawArrays(GL_POINTS, tail, MAX_BODY_LEN - tail);
         glDrawArrays(GL_POINTS, 0, head);
     } else {

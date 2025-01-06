@@ -7,7 +7,7 @@
 #include "../window/window.hpp"
 #include "objects.hpp"
 
-#define MAX_BODY_LEN 15008004
+#define MAX_BODY_LEN 100
 
 class Player : public GameObject {
 public:

@@ -64,9 +64,27 @@ void display_loop(Window *windowobj) {
 	}
 }
 
+/**
+ * @brief function for making new food
+ * 
+ * @param windowobj 
+ */
 void make_food(Window *windowobj) {
 	Food *f = new Food(main_player, make_food, windowobj, &all_objects);
 	all_objects.push_back(f);
+}
+
+/**
+ * @brief initialize game objects, reset counters, whatever is needed to start a game
+ * 
+ * @param main_window 
+ */
+void start_game(Window *main_window) {
+// make a player object
+	main_player = new Player();
+	all_objects.push_back(main_player);
+	// make the first food
+	make_food(main_window);
 }
 
 /**
@@ -77,15 +95,12 @@ void make_food(Window *windowobj) {
  * @return int 
  */
 int main(int argc, char *argv[]) {
-	Window mainwindow("Snek 3", 1, 800, 800, key);
+	Window main_window("Snek 3", 1, 800, 800, key);
 	glDisable(GL_DEPTH_TEST);
 	glClearColor((float)midnight.r / 255.0, (float)midnight.g / 255.0, (float)midnight.b / 255.0, 1.0);
 
-	// make a player object
-	main_player = new Player();
-	all_objects.push_back(main_player);
-	make_food(&mainwindow);
+	start_game(&main_window);
 
 	// start main display loop
-	display_loop(&mainwindow);
+	display_loop(&main_window);
 }

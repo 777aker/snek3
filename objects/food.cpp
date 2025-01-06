@@ -4,6 +4,14 @@
 
 #include "food.hpp"
 
+/**
+ * @brief Construct a new Food:: Food object
+ * 
+ * @param mp 
+ * @param sf 
+ * @param windowobj 
+ * @param ao 
+ */
 Food::Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameObject*> *ao) {
     main_player = mp;
     spawn_food = sf;
@@ -19,11 +27,20 @@ Food::Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameO
     };
 }
 
+/**
+ * @brief Destroy the Food:: Food object
+ * 
+ */
 Food::~Food() {
     all_objects->erase(std::remove(all_objects->begin(), all_objects->end(), this), all_objects->end());
     spawn_food(main_window);
 }
 
+/**
+ * @brief called every frame
+ * 
+ * @param windowobj 
+ */
 void Food::display_loop(Window *windowobj) {
     glColor3ub(alizarin.r, alizarin.g, alizarin.b);
     glPointSize(me.radius * POINT_SIZE_MODIFIER);
