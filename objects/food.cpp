@@ -24,7 +24,7 @@ Food::Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameO
             (float)((rand() % (int)(windowobj->dim*windowobj->asp*2)) - windowobj->dim*windowobj->asp), 
             (float)((rand() % (int)(windowobj->dim*2)) - windowobj->dim) 
         },
-        1
+        10
     };
 }
 
@@ -43,9 +43,9 @@ Food::~Food() {
  * 
  * @param windowobj 
  */
-void Food::display_loop(Window *windowobj) {
+void Food::display_loop(Window *windowobj, double deltaTime) {
     glColor3ub(alizarin.r, alizarin.g, alizarin.b);
-    glPointSize(me.radius * POINT_SIZE_MODIFIER);
+    glPointSize(me.radius);
     glBegin(GL_POINTS);
     glVertex2f(me.center.x, me.center.y);
     glEnd();

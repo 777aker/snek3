@@ -8,10 +8,10 @@
  */
 Player::Player() {
     // initialize all the player variables
-    r = 1;
+    r = 10;
     direction = 0;
-    speed = 0.25;
-    turn_speed = .05;
+    speed = 100;
+    turn_speed = 5;
     dir_modifier = 0;
     my_color = emerald;
 
@@ -93,13 +93,13 @@ void Player::key_press(GLFWwindow *windowobj, int key, int scancode, int action,
  * 
  * @param windowobj 
  */
-void Player::display_loop(Window *windowobj) {
+void Player::display_loop(Window *windowobj, double deltaTime) {
     // update direction
-    direction += dir_modifier;
+    direction += dir_modifier * (float)deltaTime;
     // move the player
     point new_head = {
-        body[head].x + (float)cos(direction) * speed,
-        body[head].y + (float)sin(direction) * speed
+        body[head].x + (float)cos(direction) * speed * (float)deltaTime,
+        body[head].y + (float)sin(direction) * speed * (float)deltaTime
     };
     head++;
     if(head > MAX_BODY_LEN - 1)
@@ -116,7 +116,7 @@ void Player::display_loop(Window *windowobj) {
 
     // draw the player
     glColor3ub(my_color.r, my_color.g, my_color.b);
-    glPointSize(r * POINT_SIZE_MODIFIER);
+    glPointSize(r);
     glEnableClientState(GL_VERTEX_ARRAY);
     glVertexPointer(2, GL_FLOAT, sizeof(point), &body[0]);
     if(tail + cur_length > MAX_BODY_LEN) {

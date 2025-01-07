@@ -25,6 +25,7 @@ static void error(int error, const char* text) {
 
 // resize the window
 void reshape(GLFWwindow* windowobj, int width, int height) {
+	glfwMakeContextCurrent(windowobj);
 	Window *me;
 	for(unsigned long int i = 0; i < windows.size(); i++) {
 		if(windows[i]->glwindow == windowobj) {
@@ -50,6 +51,9 @@ Window::Window(const char* title, int sync, int width, int height,
 	void(*key)(GLFWwindow*, int, int, int, int)) {
 	// initialize GLFW
 	if (!glfwInit()) Fatal("Cannot initialize glfw\n");
+
+	dim = height;
+	asp = width / height;
 
 	windows.push_back(this);
 
@@ -77,8 +81,6 @@ Window::Window(const char* title, int sync, int width, int height,
 
 	// set callback for keyboard input
 	glfwSetKeyCallback(glwindow, key);
-
-	
 }
 
 // clean up window

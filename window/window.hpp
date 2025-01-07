@@ -39,8 +39,8 @@ void Print(const char* format, ...);
 
 class Window {
 public:
-	double dim = 100;
-	double asp = 1;
+	double dim;
+	double asp;
 	int pixel_width;
 	int pixel_height;
 	Window(const char* title, int sync, int width, int height,

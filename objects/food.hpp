@@ -10,7 +10,7 @@ class Food : public GameObject {
 public:
     Food(Player *mp, void (*sf)(Window*), Window* windowobj, std::vector<GameObject*> *ao, int *tf);
     ~Food();
-    void display_loop(Window *windowobj);
+    void display_loop(Window *windowobj, double deltaTime);
 private:
     Player *main_player;
     void (*spawn_food)(Window*);
