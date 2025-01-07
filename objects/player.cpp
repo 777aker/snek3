@@ -63,7 +63,7 @@ void Player::increase_length(int increase) {
  * @param action 
  * @param mods 
  */
-void Player::key_press(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
+void Player::key_press(GLFWwindow *glwindow, int key, int scancode, int action, int mods) {
     if(max_length > MAX_BODY_LEN) {
         max_length = MAX_BODY_LEN;
     }

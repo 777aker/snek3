@@ -24,27 +24,27 @@ Window *info_window;
  * @param action 
  * @param mods 
  */
-void snake_window_key(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
+void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods) {
 	// call player key press
-	main_player->key_press(windowobj, key, scancode, action, mods);
+	main_player->key_press(glwindow, key, scancode, action, mods);
 
 	if (action == GLFW_RELEASE)
 		return;
 
 	switch (key) {
 	case GLFW_KEY_ESCAPE:
-		glfwSetWindowShouldClose(windowobj, 1);
+		glfwSetWindowShouldClose(glwindow, 1);
 		break;
 	}
 }
 
-void info_window_key(GLFWwindow *windowobj, int key, int scancode, int action, int mods) {
+void info_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods) {
 	if (action == GLFW_RELEASE)
 		return;
 
 	switch (key) {
 	case GLFW_KEY_ESCAPE:
-		glfwSetWindowShouldClose(windowobj, 1);
+		glfwSetWindowShouldClose(glwindow, 1);
 		break;
 	}
 }

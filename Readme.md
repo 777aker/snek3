@@ -16,11 +16,12 @@ Incremental?
     - [ ] die if go offscreen
 - [ ] ~~Pick color~~
 - [ ] ~~Pick start location~~
-- [ ] Food counter
+- [x] Food counter
     - [x] spawn random
 
 - [ ] ~~spheres that spawn and kill player~~
 
+### Upgrades
 - [x] food
     - [ ] spawn random intervals
     - [ ] more frequent as time goes on
@@ -31,4 +32,3 @@ Incremental?
 - [ ] multiple snakes
     - [ ] different colors can overlap but same can't
     - [ ] select snakes to control?
-    - [ ] real time strategy snake

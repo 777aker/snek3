@@ -24,11 +24,11 @@ static void error(int error, const char* text) {
 }
 
 // resize the window
-void reshape(GLFWwindow* windowobj, int width, int height) {
-	glfwMakeContextCurrent(windowobj);
+void reshape(GLFWwindow* glwindow, int width, int height) {
+	glfwMakeContextCurrent(glwindow);
 	Window *me;
 	for(unsigned long int i = 0; i < windows.size(); i++) {
-		if(windows[i]->glwindow == windowobj) {
+		if(windows[i]->glwindow == glwindow) {
 			me = windows[i];
 		}
 	}
