@@ -61,7 +61,7 @@ Window::Window(const char* title, int sync, int width, int height,
 	glfwSetErrorCallback(error);
 
 	// set window properties
-	glfwWindowHint(GLFW_RESIZABLE, 1);
+	glfwWindowHint(GLFW_RESIZABLE, 0);
 	glfwWindowHint(GLFW_DOUBLEBUFFER, 1);
 	glfwWindowHint(GLFW_DEPTH_BITS, 24);
 	glfwWindowHint(GLFW_ALPHA_BITS, 8);

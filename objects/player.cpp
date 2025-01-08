@@ -6,7 +6,7 @@
  * @brief Construct a new Player:: Player object
  * 
  */
-Player::Player() {
+Player::Player(void (*sg)(), Window* mw) {
     // initialize all the player variables
     r = 10;
     direction = 0;
@@ -21,6 +21,9 @@ Player::Player() {
     tail = 0;
     max_length = 1;
     cur_length = 1;
+
+    start_game = sg;
+    my_window = mw;
 }
 
 /**
@@ -106,6 +109,12 @@ void Player::display_loop(Window *windowobj, double deltaTime) {
         head = 0;
     body[head] = new_head;
     cur_length++;
+
+    int window_width, window_height;
+    glfwGetWindowSize(my_window->glwindow, &window_width, &window_height);
+    if(new_head.x < -window_width || new_head.x > window_width || new_head.y > window_height || new_head.y < -window_height) {
+        return start_game();
+    }
 
     while(cur_length > max_length) {
         tail++;

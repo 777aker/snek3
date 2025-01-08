@@ -16,7 +16,7 @@ Window *snake_window;
 Window *info_window;
 
 /**
- * @brief respond to key pressed
+ * @brief respond to key pressed in the snake window
  * 
  * @param windowobj 
  * @param key 
@@ -38,6 +38,15 @@ void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action, i
 	}
 }
 
+/**
+ * @brief handles key presses in the information window
+ * 
+ * @param glwindow 
+ * @param key 
+ * @param scancode 
+ * @param action 
+ * @param mods 
+ */
 void info_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods) {
 	if (action == GLFW_RELEASE)
 		return;
@@ -49,6 +58,10 @@ void info_window_key(GLFWwindow *glwindow, int key, int scancode, int action, in
 	}
 }
 
+/**
+ * @brief window display for the main snake game
+ * 
+ */
 void snake_window_display() {
 	glfwMakeContextCurrent(snake_window->glwindow);
 	double now = glfwGetTime();
@@ -75,18 +88,28 @@ void snake_window_display() {
 	lastTime = now;
 }
 
+/**
+ * @brief display for the information window, like food amount
+ * 
+ */
 void info_window_display() {
 	glfwMakeContextCurrent(info_window->glwindow);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	int current_line = info_window->dim - 40;
+	int newline = 30;
+	int left_offset = 10;
+
 	// font color
 	glColor3ub(concrete.r, concrete.g, concrete.b);
 	// want to see fps
-	glRasterPos2i(info_window->dim * info_window->asp - 20, info_window->dim - 5);
+	glRasterPos2i(-info_window->dim * info_window->asp + left_offset, current_line);
 	Print("FPS=%d", info_window->FramesPerSecond());
+	current_line -= newline;
 	// display total foods
-	glRasterPos2i(-info_window->dim * info_window->asp + 10, info_window->dim - 5);
+	glRasterPos2i(-info_window->dim * info_window->asp + left_offset, current_line);
 	Print("Total Food=%d", total_foods);
+	current_line += newline;
 
 	// swap buffers
 	glFlush();
@@ -128,12 +151,15 @@ void make_food(Window *windowobj) {
  * 
  * @param main_window 
  */
-void start_game(Window *main_window) {
-// make a player object
-	main_player = new Player();
+void start_game() {
+	all_objects.clear();
+
+	total_foods = 0;
+	// make a player object
+	main_player = new Player(start_game, snake_window);
 	all_objects.push_back(main_player);
 	// make the first food
-	make_food(main_window);
+	make_food(snake_window);
 }
 
 /**
@@ -146,15 +172,17 @@ void start_game(Window *main_window) {
 int main(int argc, char *argv[]) {
 	snake_window = new Window("Snek 3.0", 0, 800, 800, snake_window_key);
 	glfwMakeContextCurrent(snake_window->glwindow);
+	glfwSetWindowPos(snake_window->glwindow, 300, 100);
 	glDisable(GL_DEPTH_TEST);
 	glClearColor((float)midnight.r / 255.0, (float)midnight.g / 255.0, (float)midnight.b / 255.0, 1.0);
 
-	start_game(snake_window);
+	start_game();
 
 	all_windows.push_back(snake_window);
 
-	info_window = new Window("Snek 3.1", 0, 100, 100, NULL);
+	info_window = new Window("Snek 3.1", 0, 200, 200, NULL);
 	glfwMakeContextCurrent(info_window->glwindow);
+	glfwSetWindowPos(info_window->glwindow, 50, 100);
 	glDisable(GL_DEPTH_TEST);
 	glClearColor((float)midnight.r / 255.0, (float)midnight.g / 255.0, (float)midnight.b / 255.0, 1.0);
 	all_windows.push_back(info_window);

@@ -11,7 +11,7 @@
 
 class Player : public GameObject {
 public:
-    Player();
+    Player(void (*sg)(), Window *mw);
     ~Player();
     void key_press(GLFWwindow *glwindow, int key, int scancode, int action, int mods);
     void display_loop(Window *windowobj, double deltaTime);
@@ -24,6 +24,9 @@ private:
     float turn_speed;
     float dir_modifier;
     color my_color;
+
+    void (*start_game)();
+    Window *my_window;
 
     point body[MAX_BODY_LEN];
     unsigned int head;
