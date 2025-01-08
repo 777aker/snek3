@@ -6,32 +6,34 @@
 #include "objects/player.hpp"
 #include "objects/food.hpp"
 
-std::vector<GameObject*> all_objects;
+std::vector<GameObject *> all_objects;
 Player *main_player;
 int total_foods = -1;
 double lastTime = 0;
 
-std::vector<Window*> all_windows;
+std::vector<Window *> all_windows;
 Window *snake_window;
 Window *info_window = NULL;
 
 /**
  * @brief respond to key pressed in the snake window
- * 
- * @param windowobj 
- * @param key 
- * @param scancode 
- * @param action 
- * @param mods 
+ *
+ * @param windowobj
+ * @param key
+ * @param scancode
+ * @param action
+ * @param mods
  */
-void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods) {
+void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods)
+{
 	// call player key press
 	main_player->key_press(glwindow, key, scancode, action, mods);
 
 	if (action == GLFW_RELEASE)
 		return;
 
-	switch (key) {
+	switch (key)
+	{
 	case GLFW_KEY_ESCAPE:
 		glfwSetWindowShouldClose(glwindow, 1);
 		break;
@@ -40,18 +42,20 @@ void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action, i
 
 /**
  * @brief handles key presses in the information window
- * 
- * @param glwindow 
- * @param key 
- * @param scancode 
- * @param action 
- * @param mods 
+ *
+ * @param glwindow
+ * @param key
+ * @param scancode
+ * @param action
+ * @param mods
  */
-void info_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods) {
+void info_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods)
+{
 	if (action == GLFW_RELEASE)
 		return;
 
-	switch (key) {
+	switch (key)
+	{
 	case GLFW_KEY_ESCAPE:
 		glfwSetWindowShouldClose(glwindow, 1);
 		break;
@@ -60,16 +64,18 @@ void info_window_key(GLFWwindow *glwindow, int key, int scancode, int action, in
 
 /**
  * @brief window display for the main snake game
- * 
+ *
  */
-void snake_window_display() {
+void snake_window_display()
+{
 	glfwMakeContextCurrent(snake_window->glwindow);
 	double now = glfwGetTime();
 	double deltaTime = now - lastTime;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	for(long unsigned int i = 0; i < all_objects.size(); i++) {
+	for (long unsigned int i = 0; i < all_objects.size(); i++)
+	{
 		all_objects[i]->display_loop(snake_window, deltaTime);
 	}
 
@@ -90,9 +96,10 @@ void snake_window_display() {
 
 /**
  * @brief display for the information window, like food amount
- * 
+ *
  */
-void info_window_display() {
+void info_window_display()
+{
 	glfwMakeContextCurrent(info_window->glwindow);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -120,33 +127,39 @@ void info_window_display() {
 
 /**
  * @brief main display loop
- * 
- * @param windowobj 
+ *
+ * @param windowobj
  */
-void display_loop() {
-	while(true) {
-		for(unsigned long int i = 0; i < all_windows.size(); i++) {
-			if(glfwWindowShouldClose(all_windows[i]->glwindow)) {
+void display_loop()
+{
+	while (true)
+	{
+		for (unsigned long int i = 0; i < all_windows.size(); i++)
+		{
+			if (glfwWindowShouldClose(all_windows[i]->glwindow))
+			{
 				return;
 			}
 		}
 
 		snake_window_display();
-		if(info_window != NULL)
+		if (info_window != NULL)
 			info_window_display();
 	}
 }
 
 /**
  * @brief function for making new food
- * 
- * @param windowobj 
+ *
+ * @param windowobj
  */
-void make_food(Window *windowobj) {
+void make_food(Window *windowobj)
+{
 	Food *f = new Food(main_player, make_food, windowobj, &all_objects);
 	all_objects.push_back(f);
 	total_foods++;
-	if(info_window == NULL && total_foods == 5) {
+	if (info_window == NULL && total_foods == 5)
+	{
 		info_window = new Window("Snek 3.1", 0, 200, 200, NULL);
 		glfwMakeContextCurrent(info_window->glwindow);
 		glfwSetWindowPos(info_window->glwindow, 50, 100);
@@ -158,12 +171,13 @@ void make_food(Window *windowobj) {
 
 /**
  * @brief initialize game objects, reset counters, whatever is needed to start a game
- * 
- * @param main_window 
+ *
+ * @param main_window
  */
-void start_game() {
+void start_game()
+{
 	all_objects.clear();
-	
+
 	// make a player object
 	main_player = new Player(start_game, snake_window);
 	all_objects.push_back(main_player);
@@ -174,12 +188,13 @@ void start_game() {
 
 /**
  * @brief program entry point
- * 
- * @param argc 
- * @param argv 
- * @return int 
+ *
+ * @param argc
+ * @param argv
+ * @return int
  */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	snake_window = new Window("Snek 3.0", 0, 400, 400, snake_window_key);
 	glfwMakeContextCurrent(snake_window->glwindow);
 	glfwSetWindowPos(snake_window->glwindow, 300, 100);

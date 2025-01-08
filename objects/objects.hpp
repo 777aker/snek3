@@ -3,7 +3,8 @@
 
 #include "../window/window.hpp"
 
-class GameObject {
+class GameObject
+{
 public:
     GameObject() {};
     ~GameObject() {};

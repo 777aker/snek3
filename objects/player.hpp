@@ -7,9 +7,10 @@
 #include "../window/window.hpp"
 #include "objects.hpp"
 
-#define MAX_BODY_LEN 15008004
+#define MAX_BODY_LEN 50
 
-class Player : public GameObject {
+class Player : public GameObject
+{
 public:
     Player(void (*sg)(), Window *mw);
     ~Player();
@@ -17,6 +18,7 @@ public:
     void display_loop(Window *windowobj, double deltaTime);
     circle get_head();
     void increase_length(int increase);
+
 private:
     float r = 10;
     float direction = 0;
