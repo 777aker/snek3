@@ -8,19 +8,9 @@
  */
 Player::Player(void (*sg)(), Window* mw) {
     // initialize all the player variables
-    r = 10;
-    direction = 0;
-    speed = 100;
-    turn_speed = 5;
-    dir_modifier = 0;
-    my_color = emerald;
 
     point start = { 0, 0 };
     body[0] = start;
-    head = 0;
-    tail = 0;
-    max_length = 1;
-    cur_length = 1;
 
     start_game = sg;
     my_window = mw;
@@ -77,8 +67,14 @@ void Player::key_press(GLFWwindow *glwindow, int key, int scancode, int action, 
 
     // reverse the direction / remove the modifier when key released
     int reverse = 1;
-    if(action == GLFW_RELEASE)
+    if(action == GLFW_RELEASE) {
+        if(!was_pressed)
+            return;
         reverse = -1;
+    } else {
+        was_pressed = true;
+    }
+        
     
     // change direction based on key pressed
     switch(key) {
@@ -92,33 +88,64 @@ void Player::key_press(GLFWwindow *glwindow, int key, int scancode, int action, 
 }
 
 /**
+ * @brief check if the player has died
+ * 
+ * @return true 
+ * @return false 
+ */
+bool Player::check_death() {
+    int window_width, window_height;
+    glfwGetWindowSize(my_window->glwindow, &window_width, &window_height);
+    if(body[head].x < -window_width || body[head].x > window_width || body[head].y > window_height || body[head].y < -window_height) {
+        return true;
+    }
+
+    int head_offset = 20;
+    int body_check = tail;
+    while(std::abs((int)(head - body_check)) > head_offset) {
+        body_check += 1;
+        if(body_check >= MAX_BODY_LEN)
+            body_check = 0;
+
+        circle body_circle = { body[body_check], r };
+        if(colliding(get_head(), body_circle))
+            return true;
+    }
+    return false;
+}
+
+/**
  * @brief called every frame
  * 
  * @param windowobj 
  */
 void Player::display_loop(Window *windowobj, double deltaTime) {
-    // update direction
-    direction += dir_modifier * (float)deltaTime;
-    // move the player
-    point new_head = {
-        body[head].x + (float)cos(direction) * speed * (float)deltaTime,
-        body[head].y + (float)sin(direction) * speed * (float)deltaTime
-    };
-    head++;
-    if(head > MAX_BODY_LEN - 1)
-        head = 0;
-    body[head] = new_head;
-    cur_length++;
+    time_accumulation += deltaTime;
+    if(time_accumulation >= update_time) {
 
-    int window_width, window_height;
-    glfwGetWindowSize(my_window->glwindow, &window_width, &window_height);
-    if(new_head.x < -window_width || new_head.x > window_width || new_head.y > window_height || new_head.y < -window_height) {
-        return start_game();
+        // update direction
+        direction += dir_modifier * (float)time_accumulation;
+        // move the player
+        point new_head = {
+            body[head].x + (float)cos(direction) * speed * (float)time_accumulation,
+            body[head].y + (float)sin(direction) * speed * (float)time_accumulation
+        };
+        head++;
+        if(head >= MAX_BODY_LEN)
+            head = 0;
+        body[head] = new_head;
+        cur_length++;
+
+        time_accumulation = 0;
+    }
+
+    if(check_death()) {
+        start_game();
     }
 
     while(cur_length > max_length) {
         tail++;
-        if(tail > MAX_BODY_LEN - 1)
+        if(tail >= MAX_BODY_LEN)
             tail = 0;
         cur_length--;
     }

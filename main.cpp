@@ -8,12 +8,12 @@
 
 std::vector<GameObject*> all_objects;
 Player *main_player;
-int total_foods = 0;
+int total_foods = -1;
 double lastTime = 0;
 
 std::vector<Window*> all_windows;
 Window *snake_window;
-Window *info_window;
+Window *info_window = NULL;
 
 /**
  * @brief respond to key pressed in the snake window
@@ -132,7 +132,8 @@ void display_loop() {
 		}
 
 		snake_window_display();
-		info_window_display();
+		if(total_foods > 0)
+			info_window_display();
 	}
 }
 
@@ -142,8 +143,17 @@ void display_loop() {
  * @param windowobj 
  */
 void make_food(Window *windowobj) {
-	Food *f = new Food(main_player, make_food, windowobj, &all_objects, &total_foods);
+	Food *f = new Food(main_player, make_food, windowobj, &all_objects);
 	all_objects.push_back(f);
+	total_foods++;
+	if(total_foods == 1) {
+		info_window = new Window("Snek 3.1", 0, 200, 200, NULL);
+		glfwMakeContextCurrent(info_window->glwindow);
+		glfwSetWindowPos(info_window->glwindow, 50, 100);
+		glDisable(GL_DEPTH_TEST);
+		glClearColor((float)midnight.r / 255.0, (float)midnight.g / 255.0, (float)midnight.b / 255.0, 1.0);
+		all_windows.push_back(info_window);
+	}
 }
 
 /**
@@ -154,7 +164,12 @@ void make_food(Window *windowobj) {
 void start_game() {
 	all_objects.clear();
 
-	total_foods = 0;
+	if(info_window != NULL) {
+		glfwDestroyWindow(info_window->glwindow);
+		delete info_window;
+	}
+
+	total_foods = -1;
 	// make a player object
 	main_player = new Player(start_game, snake_window);
 	all_objects.push_back(main_player);
@@ -170,7 +185,7 @@ void start_game() {
  * @return int 
  */
 int main(int argc, char *argv[]) {
-	snake_window = new Window("Snek 3.0", 0, 800, 800, snake_window_key);
+	snake_window = new Window("Snek 3.0", 0, 400, 400, snake_window_key);
 	glfwMakeContextCurrent(snake_window->glwindow);
 	glfwSetWindowPos(snake_window->glwindow, 300, 100);
 	glDisable(GL_DEPTH_TEST);
@@ -179,13 +194,6 @@ int main(int argc, char *argv[]) {
 	start_game();
 
 	all_windows.push_back(snake_window);
-
-	info_window = new Window("Snek 3.1", 0, 200, 200, NULL);
-	glfwMakeContextCurrent(info_window->glwindow);
-	glfwSetWindowPos(info_window->glwindow, 50, 100);
-	glDisable(GL_DEPTH_TEST);
-	glClearColor((float)midnight.r / 255.0, (float)midnight.g / 255.0, (float)midnight.b / 255.0, 1.0);
-	all_windows.push_back(info_window);
 
 	// start main display loop
 	display_loop();
