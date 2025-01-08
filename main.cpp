@@ -132,7 +132,7 @@ void display_loop() {
 		}
 
 		snake_window_display();
-		if(total_foods > 0)
+		if(info_window != NULL)
 			info_window_display();
 	}
 }
@@ -146,7 +146,7 @@ void make_food(Window *windowobj) {
 	Food *f = new Food(main_player, make_food, windowobj, &all_objects);
 	all_objects.push_back(f);
 	total_foods++;
-	if(total_foods == 1) {
+	if(info_window == NULL && total_foods == 5) {
 		info_window = new Window("Snek 3.1", 0, 200, 200, NULL);
 		glfwMakeContextCurrent(info_window->glwindow);
 		glfwSetWindowPos(info_window->glwindow, 50, 100);
@@ -163,17 +163,12 @@ void make_food(Window *windowobj) {
  */
 void start_game() {
 	all_objects.clear();
-
-	if(info_window != NULL) {
-		glfwDestroyWindow(info_window->glwindow);
-		delete info_window;
-	}
-
-	total_foods = -1;
+	
 	// make a player object
 	main_player = new Player(start_game, snake_window);
 	all_objects.push_back(main_player);
 	// make the first food
+	total_foods = -1;
 	make_food(snake_window);
 }
 
