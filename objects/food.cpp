@@ -50,7 +50,7 @@ void Food::display_loop(Window *windowobj, double deltaTime)
     circle player_head = main_player->get_head();
     if (colliding(player_head, me))
     {
-        main_player->increase_length(10);
+        main_player->increase_length(1);
         spawn_food(main_window);
         delete this;
     }
