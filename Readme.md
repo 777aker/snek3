@@ -38,6 +38,13 @@ Incremental?
     - [x] increase snake length
     - [ ] increase snake speed
 
+### World Map
+- [ ] religion spread
+- [ ] snake vs human territory spread
+- [ ] countries
+
+### skill tree
+
 ### RTS Snake
 - [ ] multiple snakes
     - [ ] different colors can overlap but same can't
