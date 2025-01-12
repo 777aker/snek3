@@ -22,6 +22,16 @@ Incremental?
 - [ ] ~~spheres that spawn and kill player~~
 
 ### Upgrades
+- [ ] I need buttons that are placed and upgrade stuff like universal paperclip
+- [ ] body manipulation upgrade, change speed, turn speed, buy intelligence
+- [ ] develop 4th wall breaking powers
+    - [ ] manipulate render engine so snakes of different colors don't collide
+    - [ ] manipulate processing system to not run while window is not selected
+- [ ] artificial snakes, develop auto move towards food farm
+- [ ] develop human intelligence
+- [ ] develop ability to farm increasing food spawning
+
+### Upgrades
 - [x] food
     - [ ] spawn random intervals
     - [ ] more frequent as time goes on
