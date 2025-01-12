@@ -30,6 +30,9 @@ Incremental?
 - [ ] artificial snakes, develop auto move towards food farm
 - [ ] develop human intelligence
 - [ ] develop ability to farm increasing food spawning
+- [ ] NLP analysis, measure desperation from social media 
+- [ ] various stats like snake speed
+- [ ] nutrients extraction, more food per food
 
 ### Upgrades
 - [x] food
