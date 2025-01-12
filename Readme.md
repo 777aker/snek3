@@ -42,6 +42,7 @@ Incremental?
 - [ ] religion spread
 - [ ] snake vs human territory spread
 - [ ] countries
+- [ ] how much food there is where
 
 ### skill tree
 
