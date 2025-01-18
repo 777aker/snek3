@@ -16,6 +16,7 @@
 #endif
 
 #include <cmath>
+#include <vector>
 
 struct point
 {

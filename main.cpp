@@ -11,9 +11,8 @@ Player *main_player;
 int total_foods = -1;
 double lastTime = 0;
 
-std::vector<Window *> all_windows;
-Window *snake_window;
-Window *info_window = NULL;
+std::vector<Window *> check_windows;
+std::vector<Window *> display_windows;
 
 /**
  * @brief respond to key pressed in the snake window
@@ -130,7 +129,7 @@ void info_window_display()
  *
  * @param windowobj
  */
-void display_loop()
+void game_loop()
 {
 	while (true)
 	{
