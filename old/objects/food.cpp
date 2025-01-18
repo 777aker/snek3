@@ -12,16 +12,14 @@
  * @param windowobj
  * @param ao
  */
-Food::Food(Player *mp, void (*sf)(Window *), Window *windowobj, std::vector<GameObject *> *ao)
+Food::Food(void (*sf)(Window *), Window *windowobj)
 {
-    main_player = mp;
     spawn_food = sf;
-    main_window = windowobj;
-    all_objects = ao;
+    spawn_window = windowobj;
 
     me = {
-        {(float)((rand() % (int)(windowobj->dim * windowobj->asp * 2)) - windowobj->dim * windowobj->asp),
-         (float)((rand() % (int)(windowobj->dim * 2)) - windowobj->dim)},
+        {(float)((rand() % (int)(spawn_window->dim * spawn_window->asp * 2)) - spawn_window->dim * spawn_window->asp),
+         (float)((rand() % (int)(spawn_window->dim * 2)) - spawn_window->dim)},
         10};
 }
 
@@ -31,7 +29,7 @@ Food::Food(Player *mp, void (*sf)(Window *), Window *windowobj, std::vector<Game
  */
 Food::~Food()
 {
-    all_objects->erase(std::remove(all_objects->begin(), all_objects->end(), this), all_objects->end());
+    all_objects.erase(std::remove(all_objects.begin(), all_objects.end(), this), all_objects.end());
 }
 
 /**
@@ -51,7 +49,7 @@ void Food::display_loop(Window *windowobj, double deltaTime)
     if (colliding(player_head, me))
     {
         main_player->increase_length(1);
-        spawn_food(main_window);
+        spawn_food(spawn_window);
         delete this;
     }
 }

@@ -29,7 +29,7 @@ window/window.a:
 objects/objects.a:
 	cd objects && $(MAKE)
 
-main.o: main.cpp common.hpp
+main.o: main.cpp common.hpp global_variables.hpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<

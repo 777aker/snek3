@@ -6,8 +6,7 @@
 #include <iostream>
 
 #include "window.hpp"
-
-std::vector<Window *> windows;
+#include "../global_variables.hpp"
 
 // Fatal error occured
 static void Fatal(const char *format, ...)
@@ -30,11 +29,11 @@ void reshape(GLFWwindow *glwindow, int width, int height)
 {
 	glfwMakeContextCurrent(glwindow);
 	Window *me;
-	for (unsigned long int i = 0; i < windows.size(); i++)
+	for (unsigned long int i = 0; i < display_windows.size(); i++)
 	{
-		if (windows[i]->glwindow == glwindow)
+		if (display_windows[i]->glwindow == glwindow)
 		{
-			me = windows[i];
+			me = display_windows[i];
 		}
 	}
 	if (me == NULL)
@@ -54,7 +53,7 @@ void reshape(GLFWwindow *glwindow, int width, int height)
 
 // initialize a lot of window stuff
 Window::Window(const char *title, int sync, int width, int height,
-			   void (*key)(GLFWwindow *, int, int, int, int))
+			   void (*key)(GLFWwindow *, int, int, int, int), void (*dl)(Window *me), void (*cd)(Window *me))
 {
 	// initialize GLFW
 	if (!glfwInit())
@@ -63,7 +62,8 @@ Window::Window(const char *title, int sync, int width, int height,
 	dim = height;
 	asp = width / height;
 
-	windows.push_back(this);
+	display_loop = dl;
+	check_display = cd;
 
 	// Error callback
 	glfwSetErrorCallback(error);

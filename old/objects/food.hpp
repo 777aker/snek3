@@ -5,6 +5,7 @@
 #include "player.hpp"
 #include "../common.hpp"
 #include "objects.hpp"
+#include "../global_variables.hpp"
 
 class Food : public GameObject
 {
@@ -16,7 +17,8 @@ public:
 private:
     void (*spawn_food)(Window *);
     circle me;
-    Window *main_window;
+    Window *spawn_window;
+    int my_pos;
 };
 
 #endif

@@ -46,11 +46,15 @@ public:
 	int pixel_width;
 	int pixel_height;
 	Window(const char *title, int sync, int width, int height,
-		   void (*key)(GLFWwindow *, int, int, int, int));
+		   void (*key)(GLFWwindow *, int, int, int, int),
+		   void (*display_loop)(Window *me),
+		   void (*check_display)(Window *me));
 	int FramesPerSecond();
 	~Window();
 	// void startDisplayLoop(void (*display)(Window*)); // this program isn't going to use this
 	GLFWwindow *glwindow;
+	void (*display_loop)(Window *me);
+	void (*check_display)(Window *me);
 
 private:
 	int fps = 0;

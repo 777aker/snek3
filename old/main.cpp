@@ -1,18 +1,16 @@
 #include <vector>
 #include <iostream>
 
-#include "common.hpp"
-#include "window/window.hpp"
-#include "objects/player.hpp"
 #include "objects/food.hpp"
+#include "global_variables.hpp"
 
-std::vector<GameObject *> all_objects;
+std::vector<GameObject> all_objects;
 Player *main_player;
 int total_foods = -1;
 double lastTime = 0;
 
-std::vector<Window *> check_windows;
-std::vector<Window *> display_windows;
+std::vector<Window> check_windows;
+std::vector<Window> display_windows;
 
 /**
  * @brief respond to key pressed in the snake window
@@ -65,9 +63,9 @@ void info_window_key(GLFWwindow *glwindow, int key, int scancode, int action, in
  * @brief window display for the main snake game
  *
  */
-void snake_window_display()
+void snake_window_display(Window *me)
 {
-	glfwMakeContextCurrent(snake_window->glwindow);
+	glfwMakeContextCurrent(me->glwindow);
 	double now = glfwGetTime();
 	double deltaTime = now - lastTime;
 
@@ -75,7 +73,7 @@ void snake_window_display()
 
 	for (long unsigned int i = 0; i < all_objects.size(); i++)
 	{
-		all_objects[i]->display_loop(snake_window, deltaTime);
+		all_objects[i]->display_loop(me, deltaTime);
 	}
 
 	// check for display errors
@@ -86,7 +84,7 @@ void snake_window_display()
 	}
 	// swap buffers
 	glFlush();
-	glfwSwapBuffers(snake_window->glwindow);
+	glfwSwapBuffers(me->glwindow);
 	// get key board events
 	glfwPollEvents();
 
@@ -97,29 +95,29 @@ void snake_window_display()
  * @brief display for the information window, like food amount
  *
  */
-void info_window_display()
+void info_window_display(Window *me)
 {
-	glfwMakeContextCurrent(info_window->glwindow);
+	glfwMakeContextCurrent(me->glwindow);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	int current_line = info_window->dim - 40;
+	int current_line = me->dim - 40;
 	int newline = 30;
 	int left_offset = 10;
 
 	// font color
 	glColor3ub(concrete.r, concrete.g, concrete.b);
 	// want to see fps
-	glRasterPos2i(-info_window->dim * info_window->asp + left_offset, current_line);
-	Print("FPS=%d", info_window->FramesPerSecond());
+	glRasterPos2i(-me->dim * me->asp + left_offset, current_line);
+	Print("FPS=%d", me->FramesPerSecond());
 	current_line -= newline;
 	// display total foods
-	glRasterPos2i(-info_window->dim * info_window->asp + left_offset, current_line);
+	glRasterPos2i(-me->dim * me->asp + left_offset, current_line);
 	Print("Total Food=%d", total_foods);
 	current_line += newline;
 
 	// swap buffers
 	glFlush();
-	glfwSwapBuffers(info_window->glwindow);
+	glfwSwapBuffers(me->glwindow);
 	// get key board events
 	glfwPollEvents();
 }
@@ -133,17 +131,22 @@ void game_loop()
 {
 	while (true)
 	{
-		for (unsigned long int i = 0; i < all_windows.size(); i++)
+		for (unsigned long int i = 0; i < display_windows.size(); i++)
 		{
-			if (glfwWindowShouldClose(all_windows[i]->glwindow))
+			if (glfwWindowShouldClose(display_windows[i]->glwindow))
 			{
 				return;
 			}
+			else
+			{
+				display_windows[i]->display_loop(display_windows[i]);
+			}
 		}
 
-		snake_window_display();
-		if (info_window != NULL)
-			info_window_display();
+		for (unsigned long int i = 0; i < check_windows.size(); i++)
+		{
+			check_windows[i]->check_display(check_windows[i]);
+		}
 	}
 }
 
@@ -154,7 +157,7 @@ void game_loop()
  */
 void make_food(Window *windowobj)
 {
-	Food *f = new Food(main_player, make_food, windowobj, &all_objects);
+	Food *f = new Food(make_food, windowobj);
 	all_objects.push_back(f);
 	total_foods++;
 	if (info_window == NULL && total_foods == 5)
@@ -194,16 +197,16 @@ void start_game()
  */
 int main(int argc, char *argv[])
 {
-	snake_window = new Window("Snek 3.0", 0, 400, 400, snake_window_key);
-	glfwMakeContextCurrent(snake_window->glwindow);
-	glfwSetWindowPos(snake_window->glwindow, 300, 100);
+	Window snake_window = Window("Snek 3.0", 0, 400, 400, snake_window_key, snake_window_display, NULL);
+	glfwMakeContextCurrent(snake_window.glwindow);
+	glfwSetWindowPos(snake_window.glwindow, 300, 100);
 	glDisable(GL_DEPTH_TEST);
 	glClearColor((float)midnight.r / 255.0, (float)midnight.g / 255.0, (float)midnight.b / 255.0, 1.0);
 
 	start_game();
 
-	all_windows.push_back(snake_window);
+	display_windows.push_back(snake_window);
 
 	// start main display loop
-	display_loop();
+	game_loop();
 }
