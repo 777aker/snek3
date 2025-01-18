@@ -10,6 +10,14 @@ Incremental?
 
 ## New Snake
 
+### TODO
+- [ ] Skills class - list of unlocked and unlockable skills that are checked through for loop
+- [ ] Window opener class - list of windows to check if we should display and list of windows to display
+    - [ ] Game starts with Snek3 in display and Info in check
+    - [ ] Info once displayed adds skills to check
+- [ ] Food for info window down to 1
+- [ ] Skill tree open at 5 food
+
 ### Basic Snake
 - [x] A snake that moves around and rotates
     - [x] die if hit any of your body (not first 5 of yourself cause that's insta death)
@@ -48,6 +56,9 @@ Incremental?
 - [ ] how much food there is where
 
 ### skill tree
+- [ ] use food to change attributes
+- [ ] unlock genetics to pass attributes down generations
+- [ ] unlock food storage
 
 ### RTS Snake
 - [ ] multiple snakes
