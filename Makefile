@@ -14,10 +14,8 @@ CFLG=-O3 -Wall -I/usr/include/opencv4
 LIBS=-lSDL2 -lSDL2_mixer -lglfw -lGLU -lGL -lm -std=c++2a -pthread
 endif
 #  OSX/Linux/Unix/Solaris
-CLEAN=rm -f $(EXE) *.o *.a
+CLEAN=rm -f $(EXE) *.o *.a snek3
 endif
-
-TOPTARGETS := all clean
 
 SUBDIRS := $(wildcard */.)
 
@@ -31,9 +29,10 @@ $(SUBDIRS):
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
-.PHONY: $(TOPTARGETS) $(SUBDIRS)
+.PHONY: $(SUBDIRS)
 
-OFILES := $(wildcard */*.o)
+SRC = $(wildcard */*.cpp)
+OBJ = $(SRC:.cpp=.o)
 
-snek3:$(OFILES)
+snek3: $(OBJ)
 	g++ $(CFLG) -o $@ $^ $(LIBS)
