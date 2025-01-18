@@ -1,5 +1,3 @@
 # Ignore libraries and output files
 *.o
 *.a
-*.exe
-snek3
