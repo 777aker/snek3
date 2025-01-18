@@ -17,6 +17,7 @@ Incremental?
     - [ ] Info once displayed adds skills to check
 - [ ] Food for info window down to 1
 - [ ] Skill tree open at 5 food
+- [ ] global variable food that all windows can easily access
 
 ### Basic Snake
 - [x] A snake that moves around and rotates
