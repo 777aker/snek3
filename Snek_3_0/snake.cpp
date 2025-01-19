@@ -60,12 +60,16 @@ void Player::key_press(GLFWwindow *glwindow, int key, int scancode, int action, 
     };
 }
 
-bool Player::check_death()
+bool Player::check_death(int window_width, int window_height)
 {
+    if (body[head].x < -window_width || body[head].x > window_width || body[head].y > window_height || body[head].y < -window_height)
+    {
+        return true;
+    }
     return false;
 }
 
-void Player::draw(Window *windowobj, double deltaTime)
+void Player::draw(Snek_3_0 *snek_window, double deltaTime)
 {
     time_accumulation += deltaTime;
     if (time_accumulation >= update_time)
@@ -83,10 +87,6 @@ void Player::draw(Window *windowobj, double deltaTime)
         cur_length++;
 
         time_accumulation = 0;
-    }
-
-    if (check_death())
-    {
     }
 
     while (cur_length > max_length)

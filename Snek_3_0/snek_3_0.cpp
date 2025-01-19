@@ -39,6 +39,7 @@ void Snek_3_0::draw_foods()
         {
             player->increase_length(1);
             make_food();
+            total_foods++;
             foods.erase(foods.begin() + i);
         }
     }
@@ -55,6 +56,15 @@ int Snek_3_0::display_loop()
 
     player->draw(this, deltaTime);
     draw_foods();
+
+    int window_width, window_height;
+    glfwGetWindowSize(glwindow, &window_width, &window_height);
+    if (player->check_death(window_width, window_height))
+    {
+        delete player;
+        total_foods = 0;
+        player = new Player({0, 0}, 10, 0, 100, 5, emerald, 0.04);
+    }
 
     // check for display errors
     int err = glGetError();

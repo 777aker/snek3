@@ -2,6 +2,7 @@
 #define SNAKE_HPP
 
 #include "../manager/global_variables.hpp"
+#include "snek_3_0.hpp"
 
 #define MAX_BODY_LEN 5
 
@@ -11,9 +12,10 @@ public:
     Player(point spawn_pos, float r, float direction, float speed, float turn_speed, color my_color, double update_time);
     ~Player();
     circle get_head();
-    void draw(Window *windowobj, double deltaTime);
+    void draw(Snek_3_0 *snek_window, double deltaTime);
     void increase_length(int increase);
     void key_press(GLFWwindow *glwindow, int key, int scancode, int action, int mods);
+    bool check_death(int window_width, int window_height);
 
 private:
     float r;
@@ -33,8 +35,6 @@ private:
     unsigned int tail = 0;
     long unsigned int max_length = 1;
     long unsigned int cur_length = 1;
-
-    bool check_death();
 };
 
 #endif
