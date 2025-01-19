@@ -17,6 +17,8 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
+all: snek_info.o
+
 snek_info.o: snek_info.cpp snek_info.hpp
 
 .cpp.o:

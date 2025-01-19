@@ -17,6 +17,8 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
+all: manager.o
+
 manager.o: manager.cpp global_variables.hpp
 
 .cpp.o:

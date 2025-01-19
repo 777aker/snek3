@@ -32,12 +32,6 @@ int Snek_Info::display_loop()
 
 int Snek_Info::check_display()
 {
-    if (glfwGetTime() > 5)
-    {
-        make_window(50, 100, midnight);
-
-        return 0;
-    }
     return 0;
 }
 

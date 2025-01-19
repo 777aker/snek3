@@ -11,6 +11,8 @@ public:
     ~Snek_3_0();
     int display_loop();
     int check_display();
+    void make_food();
+    void draw_foods();
 };
 
 void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods);

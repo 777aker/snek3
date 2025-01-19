@@ -1,4 +1,7 @@
-# Snek 3
+# Scalability
+
+Renamed to a good name.
+
 I just really like making snake so I'm going to make snake 3.0 (I've made it twice before).
 
 So, I was thinking, I really like universal paperclip and a dark room.

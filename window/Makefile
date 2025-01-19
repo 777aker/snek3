@@ -17,6 +17,8 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
+all: window.o
+
 window.o: window.cpp window.hpp
 
 .cpp.o:

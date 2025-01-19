@@ -32,7 +32,7 @@ void game_loop()
 
 int main(int argc, char *argv[])
 {
-    Snek_3_0 *snake_window = new Snek_3_0("Snek 3.0", 0, 400, 400, snake_window_key);
+    Snek_3_0 *snake_window = new Snek_3_0("Scalability", 0, 400, 400, snake_window_key);
     check_windows.push_back(snake_window);
     Snek_Info *snake_info = new Snek_Info("Snek Info", 0, 200, 100, info_window_key);
     check_windows.push_back(snake_info);

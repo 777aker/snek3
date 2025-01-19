@@ -17,7 +17,10 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
+all: snek_3_0.o snake.o
+
 snek_3_0.o: snek_3_0.cpp snek_3_0.hpp
+snake.o: snake.cpp snake.hpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<
