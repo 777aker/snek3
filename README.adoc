@@ -2,9 +2,9 @@
 
 Renamed to a good name.
 
-I just really like making snake so I'm going to make snake 3.0 (I've made it twice before).
+I just really like making snake so I'm going to make snake 3.0 (I've made it twice before each time with different twists).
 
-So, I was thinking, I really like universal paperclip and a dark room.
+So, I was thinking, I really like universal paperclip and a dark room. (Recently played neal.fun's new game too which has a similar vibe)
 Why do I like them? 
 They have a fun amount of suprises, and the game just changes.
 It even just changes game modes.
@@ -15,14 +15,19 @@ Incremental?
 
 Did a major rework of how windows function so the game is much more expandable
 
-### TODO
+## TODO
+
+### Next
+Skill tree
+
+### Generic
 - [ ] Skills class - list of unlocked and unlockable skills that are checked through for loop
 - [x] Window opener class - list of windows to check if we should display and list of windows to display
     - [x] Game starts with Snek3 in display and Info in check
     - [ ] Info once displayed adds skills to check
-- [ ] Food for info window down to 1
+- [x] Food for info window down to 1
 - [ ] Skill tree open at 5 food
-- [ ] global variable food that all windows can easily access
+- [x] global variable food that all windows can easily access
 
 ### Basic Snake
 - [x] A snake that moves around and rotates
