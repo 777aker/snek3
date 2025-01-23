@@ -15,6 +15,19 @@ int Snek_Info::display_loop()
     glfwMakeContextCurrent(glwindow);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    int current_line = dim - 40;
+    int line_spacing = 30;
+    int left_offset = 10;
+
+    glColor3ub(concrete.r, concrete.g, concrete.b);
+    glRasterPos2i(-dim * asp + left_offset, current_line);
+    Print("FPS=%d", FramesPerSecond());
+    current_line -= line_spacing;
+
+    glRasterPos2i(-dim * asp + left_offset, current_line);
+    Print("Total Food=%d", total_foods);
+    current_line -= line_spacing;
+
     // check for display errors
     int err = glGetError();
     if (err)
@@ -32,6 +45,10 @@ int Snek_Info::display_loop()
 
 int Snek_Info::check_display()
 {
+    if (total_foods > 0)
+    {
+        make_window(100, 100, midnight);
+    }
     return 0;
 }
 
