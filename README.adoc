@@ -1,4 +1,7 @@
-# Snek 3
+# Scalability
+
+Renamed to a good name.
+
 I just really like making snake so I'm going to make snake 3.0 (I've made it twice before).
 
 So, I was thinking, I really like universal paperclip and a dark room.
@@ -10,13 +13,16 @@ Incremental?
 
 ## New Snake
 
+Did a major rework of how windows function so the game is much more expandable
+
 ### TODO
 - [ ] Skills class - list of unlocked and unlockable skills that are checked through for loop
-- [ ] Window opener class - list of windows to check if we should display and list of windows to display
-    - [ ] Game starts with Snek3 in display and Info in check
+- [x] Window opener class - list of windows to check if we should display and list of windows to display
+    - [x] Game starts with Snek3 in display and Info in check
     - [ ] Info once displayed adds skills to check
 - [ ] Food for info window down to 1
 - [ ] Skill tree open at 5 food
+- [ ] global variable food that all windows can easily access
 
 ### Basic Snake
 - [x] A snake that moves around and rotates

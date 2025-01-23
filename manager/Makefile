@@ -14,25 +14,16 @@ CFLG=-O3 -Wall -I/usr/include/opencv4
 LIBS=-lSDL2 -lSDL2_mixer -lglfw -lGLU -lGL -lm -std=c++2a -pthread
 endif
 #  OSX/Linux/Unix/Solaris
-CLEAN=rm -f $(EXE) *.o *.a snek3
+CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-SUBDIRS := $(wildcard */.)
+all: manager.o
 
-all: $(SUBDIRS) snek3
-clean: $(SUBDIRS)
-	$(CLEAN)
-
-$(SUBDIRS):
-	$(MAKE) -C $@ $(MAKECMDGOALS)
+manager.o: manager.cpp global_variables.hpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
-.PHONY: $(SUBDIRS)
-
-SRC = $(wildcard */*.cpp)
-OBJ = $(SRC:.cpp=.o)
-
-snek3: $(OBJ)
-	g++ $(CFLG) -o $@ $^ $(LIBS)
+# Clean
+clean:
+	$(CLEAN)

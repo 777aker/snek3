@@ -64,6 +64,9 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "format": "cpp",
-        "__nullptr": "cpp"
+        "__nullptr": "cpp",
+        "__node_handle": "cpp",
+        "__bit_reference": "cpp",
+        "__hash_table": "cpp"
     }
 }

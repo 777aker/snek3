@@ -1,7 +1,3 @@
-EXE=objects.a
-
-all: $(EXE)
-
 #  Msys/MinGW
 ifeq "$(OS)" "Windows_NT"
 CFLG=-O3 -Wall -DUSEGLEW -I/mingw64/include/opencv4
@@ -21,14 +17,13 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-player.o: player.cpp player.hpp objects.hpp
-food.o: food.cpp food.hpp objects.hpp
+all: snek_info.o
 
-objects.a: player.o food.o
-	ar -rcs $@ $^
+snek_info.o: snek_info.cpp snek_info.hpp
 
 .cpp.o:
-	g++ -c $(CFLG) $<
+	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
+# Clean
 clean:
 	$(CLEAN)

@@ -1,7 +1,3 @@
-EXE=window.a
-
-all: $(EXE)
-
 #  Msys/MinGW
 ifeq "$(OS)" "Windows_NT"
 CFLG=-O3 -Wall -DUSEGLEW -I/mingw64/include/opencv4
@@ -21,13 +17,13 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-window.o: window.cpp window.hpp 
+all: window.o
 
-window.a: window.o
-	ar -rcs $@ $^
+window.o: window.cpp window.hpp
 
 .cpp.o:
-	g++ -c $(CFLG) $<
+	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
+# Clean
 clean:
 	$(CLEAN)
