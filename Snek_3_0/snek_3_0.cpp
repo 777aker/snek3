@@ -6,6 +6,27 @@ Player *player;
 std::vector<point> foods;
 int food_size = 4;
 
+struct player_values
+{
+    point spawn;
+    float r;
+    float direction;
+    float speed;
+    float turn_speed;
+    color my_color;
+    double update_time;
+};
+
+player_values player_defaults = {
+    .spawn = {0, 0},
+    .r = 10,
+    .direction = 0,
+    .speed = 100,
+    .turn_speed = 2.5,
+    .my_color = emerald,
+    .update_time = 0.15,
+};
+
 Snek_3_0::Snek_3_0(const char *title, int sync, int width, int height,
                    void (*key)(GLFWwindow *, int, int, int, int)) : Window(title, sync, width, height, key)
 {
@@ -63,7 +84,14 @@ int Snek_3_0::display_loop()
     {
         delete player;
         total_foods = 0;
-        player = new Player({0, 0}, 10, 0, 100, 5, emerald, 0.04);
+        player = new Player(
+            player_defaults.spawn,
+            player_defaults.r,
+            player_defaults.direction,
+            player_defaults.speed,
+            player_defaults.turn_speed,
+            player_defaults.my_color,
+            player_defaults.update_time);
     }
 
     // check for display errors
@@ -87,7 +115,14 @@ int Snek_3_0::check_display()
 {
 
     make_window(300, 100, midnight);
-    player = new Player({0, 0}, 10, 0, 100, 5, emerald, 0.04);
+    player = new Player(
+        player_defaults.spawn,
+        player_defaults.r,
+        player_defaults.direction,
+        player_defaults.speed,
+        player_defaults.turn_speed,
+        player_defaults.my_color,
+        player_defaults.update_time);
     make_food();
 
     return 0;
