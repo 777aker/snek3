@@ -3,18 +3,18 @@
 
 #include "../window/window.hpp"
 
-class Snek_3_0 : public Window
-{
-public:
-    Snek_3_0(const char *title, int sync, int width, int height,
-             void (*key)(GLFWwindow *, int, int, int, int));
-    ~Snek_3_0();
-    int display_loop();
-    int check_display();
-    void make_food();
-    void draw_foods();
+class Snek_3_0 : public Window {
+ public:
+  Snek_3_0(const char *title, int sync, int width, int height,
+           void (*key)(GLFWwindow *, int, int, int, int));
+  ~Snek_3_0();
+  int display_loop();
+  int check_display();
+  void make_food();
+  void draw_foods();
 };
 
-void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action, int mods);
+void snake_window_key(GLFWwindow *glwindow, int key, int scancode, int action,
+                      int mods);
 
 #endif
