@@ -18,7 +18,8 @@ Did a major rework of how windows function so the game is much more expandable
 ## TODO
 
 ### Next
-Skill tree
+- [ ] Move this to Obsidian because it's nicer
+- [ ] Make README just explain project or something
 
 ### Generic
 - [ ] Skills class - list of unlocked and unlockable skills that are checked through for loop
@@ -39,6 +40,7 @@ Skill tree
     - [x] spawn random
 
 - [ ] ~~spheres that spawn and kill player~~
+- [ ] procedural snake animation? 
 
 ### Upgrades
 - [ ] I need buttons that are placed and upgrade stuff like universal paperclip
