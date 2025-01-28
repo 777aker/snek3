@@ -1,0 +1,2 @@
+- [ ] procedural snake animation? (Youtube video where they do it with koi fish)
+- [ ] make birds spawn and kill snake

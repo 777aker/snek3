@@ -8,27 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "c00423178f278847",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          },
-          {
             "id": "9b41dabff126d4a0",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "TODO/Next.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Next"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -167,14 +160,22 @@
   },
   "active": "9b41dabff126d4a0",
   "lastOpenFiles": [
-    "Engine/Event Notifications.md",
-    "Makefile",
-    "Snek/Tree Chopping.md",
-    "Snek/Tools.md",
+    "TODO/Skill Tree.md",
+    "TODO/Snake.md",
+    "TODO/Next.md",
+    "TODO/Done",
+    "TODO/Ideas.md",
+    "TODO/General.md",
+    "Snek/Tool Making.md",
+    "Snek/Farm.md",
+    "TODO",
+    "Snek/Food Pantry.md",
     "Snek/Food Burrow.md",
     "Snek/Wood Collection.md",
+    "Snek/Tree Chopping.md",
+    "Engine/Event Notifications.md",
+    "Makefile",
     "Snek/Intelligence.md",
-    "Snek/Food Pantry.md",
     "Engine/Update Time.md",
     "Snek",
     "Engine",

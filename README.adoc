@@ -1,79 +1,12 @@
 # Scalability
 
-Renamed to a good name.
+A game where you're a Snake trying to get food. More food is better. 
 
 I just really like making snake so I'm going to make snake 3.0 (I've made it twice before each time with different twists).
 
-So, I was thinking, I really like universal paperclip and a dark room. (Recently played neal.fun's new game too which has a similar vibe)
-Why do I like them? 
-They have a fun amount of suprises, and the game just changes.
-It even just changes game modes.
-So, how do I do that for Snake? 
-Incremental?
+I enjoy universal paperclip, a dark room, uncle chop, and neal.fun's website.
+I enjoy the varying mini-games with specific themes.
+So this will be a Snake game with various mini-games and mobile games I think were fun. 
+It's also a nice small project because I always get overwhelmed with the big ones.
 
-## New Snake
 
-Did a major rework of how windows function so the game is much more expandable
-
-## TODO
-
-### Next
-- [ ] Move this to Obsidian because it's nicer
-- [ ] Make README just explain project or something
-
-### Generic
-- [ ] Skills class - list of unlocked and unlockable skills that are checked through for loop
-- [x] Window opener class - list of windows to check if we should display and list of windows to display
-    - [x] Game starts with Snek3 in display and Info in check
-    - [ ] Info once displayed adds skills to check
-- [x] Food for info window down to 1
-- [ ] Skill tree open at 5 food
-- [x] global variable food that all windows can easily access
-
-### Basic Snake
-- [x] A snake that moves around and rotates
-    - [x] die if hit any of your body (not first 5 of yourself cause that's insta death)
-    - [x] die if go offscreen
-- [ ] ~~Pick color~~
-- [ ] ~~Pick start location~~
-- [x] Food counter
-    - [x] spawn random
-
-- [ ] ~~spheres that spawn and kill player~~
-- [ ] procedural snake animation? 
-
-### Upgrades
-- [ ] I need buttons that are placed and upgrade stuff like universal paperclip
-- [ ] body manipulation upgrade, change speed, turn speed, buy intelligence
-- [ ] develop 4th wall breaking powers
-    - [ ] manipulate render engine so snakes of different colors don't collide
-    - [ ] manipulate processing system to not run while window is not selected
-- [ ] artificial snakes, develop auto move towards food farm
-- [ ] develop human intelligence
-- [ ] develop ability to farm increasing food spawning
-- [ ] NLP analysis, measure desperation from social media 
-- [ ] various stats like snake speed
-- [ ] nutrients extraction, more food per food
-
-### Upgrades
-- [x] food
-    - [ ] spawn random intervals
-    - [ ] more frequent as time goes on
-    - [x] increase snake length
-    - [ ] increase snake speed
-
-### World Map
-- [ ] religion spread
-- [ ] snake vs human territory spread
-- [ ] countries
-- [ ] how much food there is where
-
-### skill tree
-- [ ] use food to change attributes
-- [ ] unlock genetics to pass attributes down generations
-- [ ] unlock food storage
-
-### RTS Snake
-- [ ] multiple snakes
-    - [ ] different colors can overlap but same can't
-    - [ ] select snakes to control?

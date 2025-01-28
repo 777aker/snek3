@@ -1,0 +1,3 @@
+- [ ] make seen at 5 food
+- [ ] make info put it in check list
+- [ ] skills class or something that makes it easy to add them to tree
