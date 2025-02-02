@@ -40,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -163,9 +164,9 @@
     "TODO/Skill Tree.md",
     "TODO/Snake.md",
     "TODO/Next.md",
-    "TODO/Done",
     "TODO/Ideas.md",
     "TODO/General.md",
+    "TODO/Done",
     "Snek/Tool Making.md",
     "Snek/Farm.md",
     "TODO",

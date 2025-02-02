@@ -16,7 +16,7 @@ int Snek_Info::display_loop() {
   int line_spacing = 30;
   int left_offset = 10;
 
-  glColor3ub(concrete.r, concrete.g, concrete.b);
+  glColor3ub(clouds.r, clouds.g, clouds.b);
   glRasterPos2i(-dim * asp + left_offset, current_line);
   Print("FPS=%d", FramesPerSecond());
   current_line -= line_spacing;
@@ -41,7 +41,7 @@ int Snek_Info::display_loop() {
 
 int Snek_Info::check_display() {
   if (total_foods > 0) {
-    make_window(100, 100, midnight);
+    make_window(100, 100, asbestos);
   }
   return 0;
 }

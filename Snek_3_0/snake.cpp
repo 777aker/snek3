@@ -57,6 +57,21 @@ bool Player::check_death(int window_width, int window_height) {
       body[head].y > window_height || body[head].y < -window_height) {
     return true;
   }
+
+  if (tail + cur_length > MAX_BODY_LEN) {
+    int first_check = head > 9 ? MAX_BODY_LEN : MAX_BODY_LEN - head;
+    for (int i = tail; i < first_check; i++) {
+      if (distance(body[head], body[i]) < r) return true;
+    }
+    for (int i = 0; i < head - 10; i++) {
+      if (distance(body[head], body[i]) < r) return true;
+    }
+  } else {
+    for (int i = tail; i < head - 10; i++) {
+      if (distance(body[head], body[i]) < r) return true;
+    }
+  }
+
   return false;
 }
 

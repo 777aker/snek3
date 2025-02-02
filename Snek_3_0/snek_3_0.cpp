@@ -22,9 +22,9 @@ player_values player_defaults = {
     .r = 10,
     .direction = 0,
     .speed = 100,
-    .turn_speed = 2.5,
+    .turn_speed = 5,
     .my_color = emerald,
-    .update_time = 0.15,
+    .update_time = 0.1,
 };
 
 Snek_3_0::Snek_3_0(const char *title, int sync, int width, int height,
@@ -98,7 +98,7 @@ int Snek_3_0::display_loop() {
 }
 
 int Snek_3_0::check_display() {
-  make_window(300, 100, midnight);
+  make_window(300, 100, midnight_blue);
   player = new Player(player_defaults.spawn, player_defaults.r,
                       player_defaults.direction, player_defaults.speed,
                       player_defaults.turn_speed, player_defaults.my_color,

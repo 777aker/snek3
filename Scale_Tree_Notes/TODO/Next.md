@@ -1,4 +1,4 @@
 - [x] Move TODO to obsidian
 - [x] Make README just explain project or something
-- [ ] Remove the downgrade in update time it's kinda lame
+- [x] Remove the downgrade in update time it's kinda lame
 - [ ] Skill Tree

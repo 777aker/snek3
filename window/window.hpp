@@ -27,13 +27,26 @@ struct color {
   int b;
 };
 
-const struct color asphalt = {52, 73, 94};      // grey
-const struct color concrete = {127, 140, 141};  // light grey
-const struct color nephritis = {39, 174, 96};   // dark green
-const struct color midnight = {44, 62, 80};     // dark grey
-const struct color emerald = {46, 204, 113};    // light green
-const struct color sunflower = {241, 196, 15};  // yellow
-const struct color alizarin = {231, 76, 60};    // bright red
+const struct color turquoise = {26, 188, 156};
+const struct color green_sea = {22, 160, 133};
+const struct color emerald = {46, 204, 113};
+const struct color nephritis = {39, 174, 96};
+const struct color peter_river = {52, 152, 219};
+const struct color belize_hole = {41, 128, 185};
+const struct color amethyst = {155, 89, 182};
+const struct color wisteria = {142, 68, 173};
+const struct color wet_asphalt = {52, 73, 94};
+const struct color midnight_blue = {44, 62, 80};
+const struct color sun_flower = {241, 196, 15};
+const struct color orange = {243, 156, 18};
+const struct color carrot = {230, 126, 34};
+const struct color pumpkin = {211, 84, 0};
+const struct color alizarin = {231, 76, 60};
+const struct color pomegranate = {192, 57, 43};
+const struct color clouds = {236, 240, 241};
+const struct color silver = {189, 195, 199};
+const struct color concrete = {149, 165, 166};
+const struct color asbestos = {127, 140, 141};
 
 void Print(const char *format, ...);
 
