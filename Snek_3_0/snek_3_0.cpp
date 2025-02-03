@@ -20,7 +20,7 @@ struct player_values {
 player_values player_defaults = {
     .spawn = {0, 0},
     .r = 10,
-    .direction = 0,
+    .direction = 3.14 / 2,
     .speed = 100,
     .turn_speed = 5,
     .my_color = emerald,
@@ -79,6 +79,8 @@ int Snek_3_0::display_loop() {
                         player_defaults.direction, player_defaults.speed,
                         player_defaults.turn_speed, player_defaults.my_color,
                         player_defaults.update_time);
+    foods.clear();
+    make_food();
   }
 
   // check for display errors

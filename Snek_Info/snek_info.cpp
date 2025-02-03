@@ -41,7 +41,7 @@ int Snek_Info::display_loop() {
 
 int Snek_Info::check_display() {
   if (total_foods > 0) {
-    make_window(100, 100, asbestos);
+    make_window(100, 100, pomegranate);
   }
   return 0;
 }

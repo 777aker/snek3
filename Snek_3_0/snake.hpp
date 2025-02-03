@@ -36,6 +36,8 @@ class Player {
   unsigned int tail = 0;
   long unsigned int max_length = 1;
   long unsigned int cur_length = 1;
+
+  int check_intersection_length = 6;
 };
 
 #endif

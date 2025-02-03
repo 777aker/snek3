@@ -8,7 +8,11 @@ Player::Player(point spawn_pos, float r, float direction, float speed,
       turn_speed(turn_speed),
       my_color(my_color),
       update_time(update_time) {
-  body[0] = spawn_pos;
+  cur_length = 10;
+  for (int i = 0; i < cur_length; i++) {
+    body[i] = spawn_pos;
+  }
+  head = cur_length - 1;
 }
 
 Player::~Player() {}
@@ -58,16 +62,18 @@ bool Player::check_death(int window_width, int window_height) {
     return true;
   }
 
-  if (tail + cur_length > MAX_BODY_LEN) {
-    int first_check = head > 9 ? MAX_BODY_LEN : MAX_BODY_LEN - head;
+  if (head < tail) {
+    int first_check = head > check_intersection_length
+                          ? MAX_BODY_LEN
+                          : MAX_BODY_LEN - (check_intersection_length - head);
     for (int i = tail; i < first_check; i++) {
       if (distance(body[head], body[i]) < r) return true;
     }
-    for (int i = 0; i < head - 10; i++) {
+    for (int i = 0; i < (int)head - check_intersection_length; i++) {
       if (distance(body[head], body[i]) < r) return true;
     }
   } else {
-    for (int i = tail; i < head - 10; i++) {
+    for (int i = tail; i < (int)head - check_intersection_length; i++) {
       if (distance(body[head], body[i]) < r) return true;
     }
   }
