@@ -20,6 +20,13 @@
         "a": 1,
         "rgb": 2412537
       }
+    },
+    {
+      "query": "path:TODO  ",
+      "color": {
+        "a": 1,
+        "rgb": 101905
+      }
     }
   ],
   "collapse-display": true,

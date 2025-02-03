@@ -1,5 +1,5 @@
 - [x] Move TODO to obsidian
 - [x] Make README just explain project or something
 - [x] Remove the downgrade in update time it's kinda lame
-- [ ] Head hit body die
+- [x] Head hit body die
 - [ ] Skill Tree

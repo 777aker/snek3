@@ -6,3 +6,5 @@
 - Genetics upgrades - turn speed, snake speed, nutrients extraction
 - Manipulate render engine so snakes of different colors don't collide
 - Auto moving snake food farm
+- Terraria mining for ores, upgrade pickaxe like starbound
+- Map making game, explore a dungeon, put loot in backpack, make map? 
