@@ -1,5 +1,6 @@
 #include "snek_info.hpp"
 
+#include "../Scale_Tree/scale_tree.hpp"
 #include "../manager/global_variables.hpp"
 
 Snek_Info::Snek_Info(const char *title, int sync, int width, int height,
@@ -41,7 +42,11 @@ int Snek_Info::display_loop() {
 
 int Snek_Info::check_display() {
   if (total_foods > 0) {
-    make_window(100, 100, pomegranate);
+    int xpos, ypos;
+    glfwGetWindowPos(display_windows[0]->glwindow, &xpos, &ypos);
+    make_window(xpos, ypos, pomegranate);
+    check_windows.push_back(
+        new Scale_Tree("Scale Tree", 0, 400, 400, scale_tree_key));
   }
   return 0;
 }

@@ -3,3 +3,4 @@
 - [x] Remove the downgrade in update time it's kinda lame
 - [x] Head hit body die
 - [ ] Skill Tree
+- [ ] Figure out why keys don't work in other windows
