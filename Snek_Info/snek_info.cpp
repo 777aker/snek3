@@ -23,7 +23,8 @@ int Snek_Info::display_loop() {
   current_line -= line_spacing;
 
   glRasterPos2i(-dim * asp + left_offset, current_line);
-  Print("Total Food=%d", total_foods);
+  int print_foods = (int)total_foods;
+  Print("Total Food=%d", print_foods);
   current_line -= line_spacing;
 
   // check for display errors

@@ -1,10 +1,15 @@
 - World map with things like military spread, food, snake spread, religion spread, countries, territories
 - Galactic conquest with ship fleet you fly around and destroy things with
-- RTS snake with controllable selectable snakes or something
+- RTS snake with controllable select able snakes or something
 - Those core destruction videos or forts game
 - Strikefleet Omega for ore collection in space inspiration
 - Genetics upgrades - turn speed, snake speed, nutrients extraction
 - Manipulate render engine so snakes of different colors don't collide
 - Auto moving snake food farm
-- Terraria mining for ores, upgrade pickaxe like starbound
+- Terraria mining for ores, upgrade pickax like Starbound
 - Map making game, explore a dungeon, put loot in backpack, make map? 
+- Melvor Idle - interesting complicated ui, different skills, different menus
+- programmable snake, like turtle graphics, ie move left then right then left
+- journey to incrementalia - pure chaos, idea is big army vs other big army
+- Card wars
+- Mini settlers - simple town builder / factorio kind of

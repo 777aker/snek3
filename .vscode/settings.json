@@ -67,6 +67,7 @@
         "__nullptr": "cpp",
         "__node_handle": "cpp",
         "__bit_reference": "cpp",
-        "__hash_table": "cpp"
+        "__hash_table": "cpp",
+        "barrier": "cpp"
     }
 }
