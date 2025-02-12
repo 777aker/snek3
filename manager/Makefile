@@ -17,9 +17,10 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-all: manager.o
+all: manager.o windows.o
 
 manager.o: manager.cpp global_variables.hpp
+windows.o: windows.cpp windows.hpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<

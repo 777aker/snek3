@@ -27,10 +27,10 @@ static void error(int error, const char *text) {
 void reshape(GLFWwindow *glwindow, int width, int height) {
   glfwMakeContextCurrent(glwindow);
   Window *me = NULL;
-  for (unsigned long int i = 0; i < display_windows.size(); i++) {
-    if (display_windows[i]->glwindow == glwindow) {
-      me = display_windows[i];
-    }
+  for (int i = 0; i < windows.display_windows_size; i++) {
+    if ((me = windows.get_display_window(i))->glwindow == glwindow) {
+      break;
+    };
   }
   if (me == NULL) {
     std::cout << "reshape: Couldn't find window pointer" << std::endl;
@@ -38,11 +38,26 @@ void reshape(GLFWwindow *glwindow, int width, int height) {
   }
   // glfwGetFramebufferSize(windowobj, &width, &height);
   me->asp = (height > 0) ? (double)width / (double)height : 1;
+  me->height = height;
+  me->width = width;
   glViewport(0, 0, width, height);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glOrtho(-me->asp * me->dim, me->asp * me->dim, -me->dim, +me->dim, -me->dim,
           +me->dim);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+}
+
+void reshape(Window *windowobj, int width, int height) {
+  windowobj->asp = (height > 0) ? (double)width / (double)height : 1;
+  windowobj->height = height;
+  windowobj->width = width;
+  glViewport(0, 0, width, height);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glOrtho(-windowobj->asp * windowobj->dim, +windowobj->asp * windowobj->dim,
+          -windowobj->dim, +windowobj->dim, -windowobj->dim, +windowobj->dim);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 }
@@ -60,8 +75,8 @@ Window::Window(const char *title, int sync, int width, int height,
 }
 
 void Window::make_window(int xpos, int ypos, color background) {
-  remove_check.push_back(this);
-  display_windows.push_back(this);
+  windows.remove_check(this);
+  windows.add_display(this);
 
   // Error callback
   glfwSetErrorCallback(error);
@@ -83,7 +98,7 @@ void Window::make_window(int xpos, int ypos, color background) {
   glfwSetWindowSizeCallback(glwindow, reshape);
   // set window size and call reshape
   // glfwGetWindowSize(glwindow, &width, &height);
-  reshape(glwindow, width, height);
+  reshape(this, width, height);
 
   // set callback for keyboard input
   glfwSetKeyCallback(glwindow, key);

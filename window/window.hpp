@@ -54,8 +54,8 @@ class Window {
  public:
   double dim;
   double asp;
-  int pixel_width;
-  int pixel_height;
+  int width;
+  int height;
   Window(const char *title, int sync, int width, int height,
          void (*key)(GLFWwindow *, int, int, int, int));
   int FramesPerSecond();
@@ -73,8 +73,6 @@ class Window {
   double last_time = 0;
   const char *title;
   int sync;
-  int width;
-  int height;
   void (*key)(GLFWwindow *, int, int, int, int);
 };
 
