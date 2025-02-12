@@ -86,6 +86,7 @@ void Window::make_window(int xpos, int ypos, color background) {
   glfwWindowHint(GLFW_DOUBLEBUFFER, 1);
   glfwWindowHint(GLFW_DEPTH_BITS, 24);
   glfwWindowHint(GLFW_ALPHA_BITS, 8);
+  glfwWindowHint(GLFW_CONTEXT_RELEASE_BEHAVIOR, GLFW_RELEASE_BEHAVIOR_NONE);
 
   // create window
   glwindow = glfwCreateWindow(width, height, title, NULL, NULL);

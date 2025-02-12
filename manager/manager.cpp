@@ -20,7 +20,7 @@ static std::atomic_int display_window_counter;
 static std::atomic_int check_window_counter;
 
 static void game_loop(int tid) {
-  while (!end_game) {
+  while (end_game == false) {
     if (tid == 0) {
       windows.update_windows();
 
