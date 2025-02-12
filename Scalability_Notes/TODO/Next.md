@@ -4,6 +4,7 @@
 - [x] Head hit body die
 - [ ] Skill Tree
 - [ ] Figure out why keys don't work in other windows
-- [ ] Thread windows - do research to make sure glfw context is thread specific not process
+- [x] Thread windows - do research to make sure glfw context is thread specific not process
     - [ ] global_variables.hpp need to be thread safe, nothing else should ever matter / share between windows
+    - [ ] make std::vector check and display windows a class that manages thread safety
 - [ ] Comment your code / document what the heck is happening everywhere
