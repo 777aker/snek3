@@ -27,9 +27,6 @@ Window *Windows::get_check_window(int window_num) {
 }
 
 void Windows::update_windows() {
-  display_windows_size = display_windows.size();
-  check_windows_size = check_windows.size();
-
   for (unsigned long int i = 0; i < display_remove.size(); i++) {
     display_windows.erase(std::remove(display_windows.begin(),
                                       display_windows.end(), display_remove[i]),
@@ -51,4 +48,7 @@ void Windows::update_windows() {
     check_windows.push_back(check_add[i]);
   }
   check_add.clear();
+
+  display_windows_size = display_windows.size();
+  check_windows_size = check_windows.size();
 }

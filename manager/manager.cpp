@@ -11,7 +11,7 @@ std::atomic_int total_foods = 0;
 
 Windows windows;
 
-static size_t NUM_THREADS = 16;
+static size_t NUM_THREADS = 1;
 static std::vector<std::thread *> threads;
 static std::barrier loop_barrier{(long int)NUM_THREADS};
 
