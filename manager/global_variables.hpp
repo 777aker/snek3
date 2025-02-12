@@ -14,7 +14,9 @@
 extern std::atomic_int total_foods;
 
 extern std::vector<Window *> display_windows;
+extern std::vector<Window *> remove_display;
 extern std::vector<Window *> check_windows;
+extern std::vector<Window *> remove_check;
 
 struct point {
   float x;
