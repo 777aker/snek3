@@ -29,8 +29,8 @@ int Scale_Tree::display_loop() {
 int Scale_Tree::check_display() {
   if (total_foods >= 2) {
     int xpos, ypos;
-    glfwGetWindowPos(windows.get_display_window(0)->glwindow, &xpos, &ypos);
-    make_window(xpos, ypos, nephritis);
+    glfwGetWindowPos(display_windows[0]->glwindow, &xpos, &ypos);
+    make_window(xpos + 100, ypos + 100, nephritis);
   }
   return 0;
 }

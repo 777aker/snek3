@@ -44,9 +44,9 @@ int Snek_Info::display_loop() {
 int Snek_Info::check_display() {
   if (total_foods > 0) {
     int xpos, ypos;
-    glfwGetWindowPos(windows.get_display_window(0)->glwindow, &xpos, &ypos);
-    make_window(xpos, ypos, pomegranate);
-    windows.add_check(
+    glfwGetWindowPos(display_windows[0]->glwindow, &xpos, &ypos);
+    make_window(xpos - 50, ypos - 50, pomegranate);
+    check_windows.push_back(
         new Scale_Tree("Scale Tree", 0, 400, 400, scale_tree_key));
   }
   return 0;

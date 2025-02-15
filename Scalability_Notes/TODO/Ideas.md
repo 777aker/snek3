@@ -13,3 +13,4 @@
 - journey to incrementalia - pure chaos, idea is big army vs other big army
 - Card wars
 - Mini settlers - simple town builder / factorio kind of
+- Some sort of driving game like oregon trail the og

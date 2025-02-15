@@ -27,8 +27,8 @@ static void error(int error, const char *text) {
 void reshape(GLFWwindow *glwindow, int width, int height) {
   glfwMakeContextCurrent(glwindow);
   Window *me = NULL;
-  for (int i = 0; i < windows.display_windows_size; i++) {
-    if ((me = windows.get_display_window(i))->glwindow == glwindow) {
+  for (long unsigned int i = 0; i < display_windows.size(); i++) {
+    if ((me = display_windows[i])->glwindow == glwindow) {
       break;
     };
   }
@@ -75,8 +75,8 @@ Window::Window(const char *title, int sync, int width, int height,
 }
 
 void Window::make_window(int xpos, int ypos, color background) {
-  windows.remove_check(this);
-  windows.add_display(this);
+  vector_remove(&check_windows, this);
+  display_windows.push_back(this);
 
   // Error callback
   glfwSetErrorCallback(error);
