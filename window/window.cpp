@@ -120,7 +120,8 @@ Window::~Window() { glfwDestroyWindow(glwindow); }
 //  Use VARARGS to make this more flexible
 //
 
-//  I lifted this font from Brent Smit - not sure if it is original
+//  My professor lifted this font from Brent Smit - not sure if it is original
+// I lifted it from my professor
 static GLubyte letters[][14] = {{0x00, 0x00, 0x7e, 0xe7, 0xe7, 0xff, 0xe7, 0xe7,
                                  0xf3, 0x99, 0x99, 0xc3, 0x7e, 0x00},
                                 {0x00, 0x00, 0x00, 0x00, 0x00, 0xdc, 0x76, 0x00,

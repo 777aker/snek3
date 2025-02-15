@@ -20,13 +20,14 @@
 #include <GL/glu.h>
 #endif
 
-// colors for drawing
+// color type for drawing
 struct color {
   int r;
   int g;
   int b;
 };
 
+// colors for drawing
 const struct color turquoise = {26, 188, 156};
 const struct color green_sea = {22, 160, 133};
 const struct color emerald = {46, 204, 113};
@@ -48,8 +49,10 @@ const struct color silver = {189, 195, 199};
 const struct color concrete = {149, 165, 166};
 const struct color asbestos = {127, 140, 141};
 
+// Easy print to screen, need to set position first
 void Print(const char *format, ...);
 
+// Window class that stores a bunch of display info
 class Window {
  public:
   double dim;

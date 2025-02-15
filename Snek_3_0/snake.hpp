@@ -6,6 +6,8 @@
 
 #define MAX_BODY_LEN 500
 
+// Player class
+// Moves around like a snake and can expand in length
 class Player {
  public:
   Player(point spawn_pos, float r, float direction, float speed,

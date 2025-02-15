@@ -1,5 +1,16 @@
 #include "snake.hpp"
 
+/**
+ * @brief Construct a new Player:: Player object
+ *
+ * @param spawn_pos
+ * @param r
+ * @param direction
+ * @param speed
+ * @param turn_speed
+ * @param my_color
+ * @param update_time
+ */
 Player::Player(point spawn_pos, float r, float direction, float speed,
                float turn_speed, color my_color, double update_time)
     : r(r),
@@ -15,8 +26,17 @@ Player::Player(point spawn_pos, float r, float direction, float speed,
   head = cur_length - 1;
 }
 
+/**
+ * @brief Destroy the Player:: Player object
+ *
+ */
 Player::~Player() {}
 
+/**
+ * @brief Helper function that just gets the current head of the player
+ *
+ * @return circle
+ */
 circle Player::get_head() {
   point position = body[head];
   circle head = {
@@ -26,6 +46,11 @@ circle Player::get_head() {
   return head;
 }
 
+/**
+ * @brief Increase the length of the player
+ *
+ * @param increase
+ */
 void Player::increase_length(int increase) {
   if (max_length + increase > MAX_BODY_LEN) {
     max_length = MAX_BODY_LEN;
@@ -34,12 +59,24 @@ void Player::increase_length(int increase) {
   }
 }
 
+/**
+ * @brief Pass key pressed information to the player for processing
+ *
+ * @param glwindow
+ * @param key
+ * @param scancode
+ * @param action
+ * @param mods
+ */
 void Player::key_press(GLFWwindow *glwindow, int key, int scancode, int action,
                        int mods) {
+  // Don't change anything on repeats
   if (action == GLFW_REPEAT) return;
 
+  // If release remove player movement
   int reverse = 1;
   if (action == GLFW_RELEASE) {
+    // Need this if player dies while moving so next player isn't backwards
     if (!was_pressed) return;
     reverse = -1;
   } else {
@@ -56,12 +93,22 @@ void Player::key_press(GLFWwindow *glwindow, int key, int scancode, int action,
   };
 }
 
+/**
+ * @brief Helper function to check if the player died
+ *
+ * @param window_width
+ * @param window_height
+ * @return true
+ * @return false
+ */
 bool Player::check_death(int window_width, int window_height) {
+  // Check if they're out of bounds
   if (body[head].x < -window_width || body[head].x > window_width ||
       body[head].y > window_height || body[head].y < -window_height) {
     return true;
   }
 
+  // Check if head is hitting the body
   if (head < tail) {
     int first_check = head > (unsigned int)check_intersection_length
                           ? MAX_BODY_LEN
@@ -81,8 +128,16 @@ bool Player::check_death(int window_width, int window_height) {
   return false;
 }
 
+/**
+ * @brief Draw the player
+ *
+ * @param snek_window
+ * @param deltaTime
+ */
 void Player::draw(Snek_3_0 *snek_window, double deltaTime) {
   time_accumulation += deltaTime;
+  // Update the head only if enough time has passed
+  // IE: the head is far enough away from the last head
   if (time_accumulation >= update_time) {
     direction += dir_modifier * (float)time_accumulation;
 
@@ -98,12 +153,14 @@ void Player::draw(Snek_3_0 *snek_window, double deltaTime) {
     time_accumulation = 0;
   }
 
+  // Move tail until we're the proper length
   while (cur_length > max_length) {
     tail++;
     if (tail >= MAX_BODY_LEN) tail = 0;
     cur_length--;
   }
 
+  // Actually draw the player
   glColor3ub(my_color.r, my_color.g, my_color.b);
   glPointSize(r);
   glEnableClientState(GL_VERTEX_ARRAY);

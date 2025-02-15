@@ -8,5 +8,6 @@
 - [x] Thread windows - do research to make sure glfw context is thread specific not process
     - [x] global_variables.hpp need to be thread safe, nothing else should ever matter / share between windows
     - [x] make std::vector check and display windows a class that manages thread safety
-    - [ ] remove the display and check vectors and instead give each window it's own thread
-- [ ] Comment your code / document what the heck is happening everywhere
+    - [x] remove the display and check vectors and instead 
+    - [ ] give each window it's own thread
+- [x] Comment your code / document what the heck is happening everywhere
