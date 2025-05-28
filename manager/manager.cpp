@@ -1,5 +1,3 @@
-#include <pthread.h>
-
 #include "../Snek_3_0/snek_3_0.hpp"
 #include "../Snek_Info/snek_info.hpp"
 #include "global_variables.hpp"

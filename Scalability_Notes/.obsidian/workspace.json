@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "9a360339c06d7231",
+        "id": "ca0a3ce299a15b89",
         "type": "tabs",
         "children": [
           {
-            "id": "65c97284ac87db05",
+            "id": "3228435582a1ff61",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "TODO/Next.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Next"
             }
           }
         ]
@@ -155,17 +159,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "65c97284ac87db05",
+  "active": "3228435582a1ff61",
   "lastOpenFiles": [
-    "TODO/Ideas.md",
     "Snek Tree/Farm.md",
+    "Snek Tree/Food Burrow.md",
+    "TODO/Ideas.md",
     "Engine/Update Time.md",
     "Engine/Event Notifications.md",
     "Snek Tree/Hawks.md",
     "Snek Tree/Resource Collection.md",
     "Snek Tree/Tool Making.md",
     "Snek Tree/Food Pantry.md",
-    "Snek Tree/Food Burrow.md",
     "Snek Tree/Harvesting.md",
     "Snek Tree/Tree Chopping.md",
     "Snek Tree/Smelting.md",
