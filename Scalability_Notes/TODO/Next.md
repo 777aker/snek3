@@ -13,5 +13,6 @@
     - [x] why does check succeed twice?
     - [ ] Populate it with some stuff
     - [ ] Make it do something - like unlock stuff 
+	    - [ ] click something start it's window
 - [ ] Pause menu
 	- [ ] Also store closed windows for reopening

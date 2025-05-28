@@ -6,8 +6,12 @@
 int total_foods = 0;
 
 // define our window vectors
-std::vector<Window *> display_windows;
+std::mutex *check_lk;
 std::vector<Window *> check_windows;
+
+// this is important for spawning windows
+std::atomic<int> last_x = 100;
+std::atomic<int> last_y = 100;
 
 /**
  * @brief Main game loop that runs until game should close
@@ -15,13 +19,6 @@ std::vector<Window *> check_windows;
  */
 static void game_loop() {
   while (true) {
-    for (long unsigned int i = 0; i < display_windows.size(); i++) {
-      if (glfwWindowShouldClose(display_windows[i]->glwindow)) {
-        return;
-      }
-      display_windows[i]->display_loop();
-    }
-
     for (long unsigned int i = 0; i < check_windows.size(); i++) {
       check_windows[i]->check_display();
     }
@@ -41,6 +38,8 @@ int main(int argc, char *argv[]) {
     printf("Cannot initialize glfw\n");
     return -1;
   }
+
+  check_lk = new std::mutex();
 
   // Initialize the main snake game window
   Snek_3_0 *snake_window =

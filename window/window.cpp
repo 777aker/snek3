@@ -4,6 +4,8 @@
  */
 #include "window.hpp"
 
+#include <pthread.h>
+
 #include <iostream>
 #include <vector>
 
@@ -62,6 +64,14 @@ void reshape(Window *windowobj, int width, int height) {
   glLoadIdentity();
 }
 
+void *call_display_forever(void *arg) {
+  Window *window = (Window *)arg;
+  while (glfwWindowShouldClose(window->glwindow)) {
+    window->display_loop();
+  }
+  return NULL;
+}
+
 // initialize a lot of window stuff
 Window::Window(const char *title, int sync, int width, int height,
                void (*key)(GLFWwindow *, int, int, int, int)) {
@@ -76,7 +86,6 @@ Window::Window(const char *title, int sync, int width, int height,
 
 void Window::make_window(int xpos, int ypos, color background) {
   vector_remove(&check_windows, this);
-  display_windows.push_back(this);
 
   // Error callback
   glfwSetErrorCallback(error);
@@ -108,6 +117,9 @@ void Window::make_window(int xpos, int ypos, color background) {
   glDisable(GL_DEPTH_TEST);
   glClearColor((float)background.r / 255.0, (float)background.g / 255.0,
                (float)background.b / 255.0, 1.0);
+
+  pthread_t display_thread;
+  pthread_create(&display_thread, NULL, call_display_forever, (void *)this);
 }
 
 // clean up window

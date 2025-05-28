@@ -12,12 +12,14 @@
 // VARIABLES HERE SHOULD BE MADE THREAD SAFE
 
 // Holds food, our main resource
-extern int total_foods;
+extern std::atomic<int> total_foods;
 
-// Windows to display
-extern std::vector<Window *> display_windows;
 // Windows to check if we've met the requirement to display
 extern std::vector<Window *> check_windows;
+
+// variable holding last selected window's position
+extern std::atomic<int> last_x;
+extern std::atomic<int> last_y;
 
 // Common type we need
 struct point {
