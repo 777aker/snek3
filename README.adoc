@@ -1,4 +1,4 @@
-# Scalability
+# Snek3
 
 A game where you're a Snake trying to get food. More food is better. 
 
@@ -8,3 +8,5 @@ I enjoy universal paperclip, a dark room, uncle chop, and neal.fun's website.
 I enjoy the varying mini-games with specific themes.
 So this will be a Snake game with various mini-games and mobile games I think were fun. 
 It's also a nice small project because I always get overwhelmed with the big ones.
+
+Scalability is actually going to be a web based game instead. 
